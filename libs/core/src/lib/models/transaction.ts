@@ -1,15 +1,22 @@
 import { TransactionType } from './transaction-type';
 
-export class Transaction {
+export abstract class Transaction {
+  abstract type: TransactionType;
+
   static fromJSON(apiData: LTO.API.Transaction[]): Transaction[];
   static fromJSON(apiData: LTO.API.Transaction): Transaction;
   static fromJSON(
     apiData: LTO.API.Transaction | LTO.API.Transaction[]
   ): Transaction | Transaction[] {
     if (Array.isArray(apiData)) {
-      return apiData.map(transactionData => new Transaction(transactionData));
+      return apiData.map(transactionData => {
+        const _ctor = getConstructor(transactionData.type);
+        return new _ctor(transactionData);
+      });
     }
-    return new Transaction(apiData);
+
+    const ctor = getConstructor(apiData.type);
+    return new ctor(apiData);
   }
 
   static group(transactions: Transaction[]): Map<TransactionType, Transaction[]> {
@@ -37,16 +44,12 @@ export class Transaction {
     return this._apiData.recipient || '';
   }
 
-  get amount() {
-    return this._apiData.amount;
+  get amount(): number {
+    return this._apiData.amount || 0;
   }
 
   get id() {
     return this._apiData.id;
-  }
-
-  get type(): TransactionType {
-    return this._apiData.type;
   }
 
   get leaseId(): string {
@@ -72,4 +75,45 @@ export class Transaction {
   }
 
   protected constructor(protected _apiData: LTO.API.Transaction) {}
+}
+
+export class TransferTransaction extends Transaction {
+  readonly type = TransactionType.TRANSFER;
+}
+
+export class LeaseTransaction extends Transaction {
+  readonly type = TransactionType.LEASE;
+}
+
+export class CancelLeaseTransaction extends Transaction {
+  readonly type = TransactionType.CANCEL_LEASE;
+}
+
+export class MassTransferTransaction extends Transaction {
+  readonly type = TransactionType.MASS_TRANSFER;
+}
+
+export class AnchorTransaction extends Transaction {
+  readonly type = TransactionType.ANCHOR;
+}
+
+export class Anchor2Transaction extends Transaction {
+  readonly type = TransactionType.ANCHOR2;
+}
+
+function getConstructor(type: TransactionType) {
+  switch (type) {
+    case TransactionType.TRANSFER:
+      return TransferTransaction;
+    case TransactionType.LEASE:
+      return LeaseTransaction;
+    case TransactionType.CANCEL_LEASE:
+      return CancelLeaseTransaction;
+    case TransactionType.MASS_TRANSFER:
+      return MassTransferTransaction;
+    case TransactionType.ANCHOR:
+      return AnchorTransaction;
+    case TransactionType.ANCHOR2:
+      return Anchor2Transaction;
+  }
 }

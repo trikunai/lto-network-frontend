@@ -30,14 +30,14 @@ export class TransactionsTableComponent implements OnInit {
 
         switch (transactionType) {
           case TransactionType.TRANSFER:
-          case TransactionType.LEASING:
+          case TransactionType.LEASE:
             return ['id', 'fee', 'timestamp', 'sender', 'recipient', 'amount'];
           case TransactionType.MASS_TRANSFER:
             return ['id', 'fee', 'timestamp', 'sender', 'total_amount'];
-          case TransactionType.CANCEL_LEASING:
+          case TransactionType.CANCEL_LEASE:
             return ['id', 'fee', 'timestamp', 'sender', 'leasing'];
           case TransactionType.ANCHOR:
-          case TransactionType.ANCHOR_NEW:
+          case TransactionType.ANCHOR2:
             return ['id', 'fee', 'timestamp', 'sender'];
           default:
             return ['id', 'sender', 'amount'];

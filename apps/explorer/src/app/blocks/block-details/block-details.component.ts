@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LtoPublicNodeService, Block, TransactionType } from '@lto/core';
 import { Observable } from 'rxjs';
-import { map, switchMap } from 'rxjs/operators';
+import { map, switchMap, tap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'explorer-block-details',
@@ -25,12 +25,12 @@ export class BlockDetailsComponent implements OnInit {
     switch (type) {
       case TransactionType.TRANSFER:
         return 'Transfer';
-      case TransactionType.LEASING:
+      case TransactionType.LEASE:
         return 'Lease';
-      case TransactionType.CANCEL_LEASING:
+      case TransactionType.CANCEL_LEASE:
         return 'Lease cancel';
       case TransactionType.ANCHOR:
-      case TransactionType.ANCHOR_NEW:
+      case TransactionType.ANCHOR2:
         return 'Anchors';
     }
 
