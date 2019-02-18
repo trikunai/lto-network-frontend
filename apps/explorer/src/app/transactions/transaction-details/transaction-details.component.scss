@@ -1,0 +1,27 @@
+mat-card {
+  margin-bottom: 16px;
+}
+
+mat-card-content {
+  padding-top: 16px;
+}
+
+.transaction-info {
+
+
+  .item {
+    margin-bottom: 16px;
+
+    .label {
+      color: #202124;
+      font-weight: 500;
+      font-size: 1rem;
+      line-height: 1.5rem;
+    }
+
+    .value {
+      font-size: 15px;
+      line-height: 24px;
+    }
+  }
+}

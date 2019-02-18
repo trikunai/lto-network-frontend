@@ -1,3 +1,67 @@
-<p>
-  transaction-details works!
-</p>
+<lto-content-section [ngSuspense]="transaction$">
+  <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
+  <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
+  <ng-container *ngSuspenseSuccess="transactionTpl"></ng-container>
+
+</lto-content-section>
+
+<ng-template #transactionTpl let-transaction>
+  <mat-card class="transaction-info">
+    <mat-card-title>Transaction details</mat-card-title>
+    <mat-card-content>
+      <div class="item">
+        <div class="label">Id</div>
+        <div class="value">
+          <lto-responsive-text xs="25" [text]="transaction.id"></lto-responsive-text>
+        </div>
+      </div>
+      <div class="item">
+        <div class="label">Type</div>
+        <div class="value">{{transaction.type}}</div>
+      </div>
+      <div class="item">
+        <div class="label">Timestamp</div>
+        <div class="value">{{transaction.timestamp | date: 'medium'}}</div>
+      </div>
+      <div class="item">
+        <div class="label">Block</div>
+        <div class="value"><a [routerLink]="['/', 'blocks', transaction.block]">{{transaction.block}}</a></div>
+      </div>
+      <div class="item">
+        <div class="label">Fee</div>
+        <div class="value">{{transaction.fee | lto}}</div>
+      </div>
+
+      <div class="item">
+        <div class="label">Sender</div>
+        <div class="value"><a [routerLink]="['/', 'addresses', transaction.sender]">
+            <lto-responsive-text [text]="transaction.sender" xs="25"></lto-responsive-text>
+          </a></div>
+      </div>
+      <div class="item">
+        <div class="label">Signature</div>
+        <div class="value">
+          <lto-responsive-text xs="25" sm="50" [text]="transaction.signature"></lto-responsive-text>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
+  <ng-container *ngTemplateOutlet="anchorsTpl; context: { $implicit: transaction }">
+
+  </ng-container>
+</ng-template>
+
+<ng-template #anchorsTpl let-transaction>
+  <mat-card>
+    <mat-card-title>Anchors</mat-card-title>
+    <mat-card-content>
+      <div class="anchor" *ngFor="let anchor of transaction.anchors">
+        <lto-responsive-text [text]="anchor"></lto-responsive-text>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button>HEX <mat-icon>arrow_drop_down</mat-icon></button>
+    </mat-card-actions>
+  </mat-card>
+</ng-template>

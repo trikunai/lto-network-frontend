@@ -1,3 +1,12 @@
-<p>
-  blocks-list works!
-</p>
+<lto-content-section infinite-scroll (scrolled)="more()">
+  <mat-card>
+    <mat-card-title>Blocks</mat-card-title>
+    <ng-container [ngSuspense]="blocks$">
+      <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
+      <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
+      <explorer-card-content-table *ngSuspenseSuccess="let blocks">
+        <explorer-blocks-table [blocks]="blocks"></explorer-blocks-table>
+      </explorer-card-content-table>
+    </ng-container>
+  </mat-card>
+</lto-content-section>
