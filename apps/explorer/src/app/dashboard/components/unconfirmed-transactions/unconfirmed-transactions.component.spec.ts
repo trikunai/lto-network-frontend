@@ -1,5 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { CoreTestingModule } from '@lto/core';
+import { CoreTestingModule } from '@lto/core/testing';
 import { SharedModule } from '../../../shared';
 
 import { UnconfirmedTransactionsComponent } from './unconfirmed-transactions.component';

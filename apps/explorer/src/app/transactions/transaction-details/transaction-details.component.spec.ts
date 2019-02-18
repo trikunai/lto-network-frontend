@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { CoreTestingModule } from '@lto/core';
+import { CoreTestingModule } from '@lto/core/testing';
 import { SharedModule } from '../../shared';
 
 import { TransactionDetailsComponent } from './transaction-details.component';

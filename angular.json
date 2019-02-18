@@ -27,10 +27,30 @@
             "scripts": []
           },
           "configurations": {
-            "production": {
+            "testnet": {
               "fileReplacements": [{
                 "replace": "apps/explorer/src/environments/environment.ts",
-                "with": "apps/explorer/src/environments/environment.prod.ts"
+                "with": "apps/explorer/src/environments/environment.testnet.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
+            },
+            "mainnet": {
+              "fileReplacements": [{
+                "replace": "apps/explorer/src/environments/environment.ts",
+                "with": "apps/explorer/src/environments/environment.mainnet.ts"
               }],
               "optimization": true,
               "outputHashing": "all",
