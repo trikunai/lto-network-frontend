@@ -1,0 +1,13 @@
+@import '~@angular/material/theming';
+
+$primary-palette: mat-palette($mat-indigo);
+$accent-palette: mat-palette($mat-pink, A200, A100, A400);
+$warn-palette: mat-palette($mat-red);
+
+$border-radius: 14px;
+$border-color: #dadce0;
+
+$color-dark: rgba(0, 0, 0, .84);
+$color-light: rgba(0, 0, 0, .52);
+
+$link-color: #0366d6;

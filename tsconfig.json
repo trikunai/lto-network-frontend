@@ -17,5 +17,6 @@
       "@lto/components": ["libs/components/src/index.ts"]
     }
   },
-  "exclude": ["node_modules", "tmp"]
+  "exclude": ["node_modules", "tmp"],
+  "files": ["libs/core/src/lib/lto-api.d.ts"]
 }

@@ -1,4 +1,4 @@
 export const environment = {
-  production: false,
+  production: true,
   ltoPublicNodeHost: 'https://testnet.legalthings.one'
 };

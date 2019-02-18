@@ -1,0 +1,25 @@
+:host {
+  display: block;
+  padding-top: 64px;
+
+  @media screen and(max-width: 599px) {
+    top: 56px;
+  }
+}
+
+
+mat-toolbar {
+  border-bottom: 1px solid #dadce0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+
+
+  .home-link {
+    outline: none;
+    cursor: pointer;
+  }
+
+}
