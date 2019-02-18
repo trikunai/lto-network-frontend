@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { AppTestingModule } from '@app/_testing';
+import { CoreTestingModule } from '@lto/core';
+import { SharedModule } from '../../../shared';
 
 import { UnconfirmedTransactionsComponent } from './unconfirmed-transactions.component';
 
@@ -9,7 +10,7 @@ describe('UnconfirmedTransactionsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [AppTestingModule],
+      imports: [CoreTestingModule, SharedModule],
       declarations: [UnconfirmedTransactionsComponent]
     }).compileComponents();
   }));

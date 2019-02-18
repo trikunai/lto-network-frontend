@@ -14,6 +14,7 @@
     "baseUrl": ".",
     "paths": {
       "@lto/core": ["libs/core/src/index.ts"],
+      "@lto/core/testing/*": ["lib/core/testing/*"],
       "@lto/common": ["libs/common/src/index.ts"]
     }
   },

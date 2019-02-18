@@ -1,5 +1,5 @@
-import { Block, BlockHeader, Transaction, Balance } from '../../models';
-import { LtoPublicNodeService } from '../../services';
+import { Block, BlockHeader, Transaction, Balance } from '../../lib/models';
+import { LtoPublicNodeService } from '../../lib/services';
 import { of } from 'rxjs';
 import * as api from './api.mock';
 import { ClassProvider } from '@angular/core';

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CoreTestingModule } from '../testing';
+import { CoreTestingModule } from '../../testing';
 import { EncoderService, Encoding } from './encoder.service';
 
 describe('core/EncoderService', () => {

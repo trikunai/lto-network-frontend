@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { RouterTestingModule } from '@angular/router/testing';
+import { MatTableModule } from '@angular/material';
+import { LtoCommonModule } from '@lto/common';
 import { BlocksTableComponent } from './blocks-table.component';
 
 describe('BlocksTableComponent', () => {
@@ -8,9 +10,9 @@ describe('BlocksTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BlocksTableComponent ]
-    })
-    .compileComponents();
+      imports: [MatTableModule, RouterTestingModule, LtoCommonModule],
+      declarations: [BlocksTableComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

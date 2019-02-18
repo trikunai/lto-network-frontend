@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { CoreTestingModule } from '../testing';
+import { CoreTestingModule } from '../../testing';
 import { LTO_PUBLIC_NODE_HOST, LtoPublicNodeService } from './lto-public-node.service';
 import { HttpTestingController } from '@angular/common/http/testing';
 

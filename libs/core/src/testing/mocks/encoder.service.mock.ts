@@ -1,4 +1,4 @@
-import { EncoderService } from '../../services';
+import { EncoderService } from '../../lib/services';
 import { ClassProvider } from '@angular/core';
 
 export class EncoderServiceMock implements EncoderService {
