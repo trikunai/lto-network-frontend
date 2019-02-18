@@ -1,14 +1,14 @@
 import { async, TestBed } from '@angular/core/testing';
-import { ComponentsModule } from './components.module';
+import { LtoCommonModule } from './lto-common.module';
 
-describe('ComponentsModule', () => {
+describe('LtoCommonModule', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ComponentsModule]
+      imports: [LtoCommonModule]
     }).compileComponents();
   }));
 
   it('should create', () => {
-    expect(ComponentsModule).toBeDefined();
+    expect(LtoCommonModule).toBeDefined();
   });
 });

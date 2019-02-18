@@ -1,0 +1,30 @@
+@import '../../../../theme/variables.scss';
+
+:host {
+  display: block;
+  overflow: auto;
+  margin: 0 -16px;
+  border-top: 1px solid $border-color;
+  border-bottom: 1px solid $border-color;
+}
+
+:host::ng-deep {
+  .mat-table {
+    thead {
+      tr.mat-header-row {
+        height: 38px;
+      }
+    }
+
+    tr:last-of-type {
+      td {
+        border-bottom: none;
+      }
+    }
+
+    td:last-of-type:not(:first-of-type),
+    th:last-of-type:not(:first-of-type) {
+      text-align: right;
+    }
+  }
+}

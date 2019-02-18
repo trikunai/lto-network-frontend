@@ -23,7 +23,7 @@
     "core": {
       "tags": []
     },
-    "components": {
+    "common": {
       "tags": []
     }
   }

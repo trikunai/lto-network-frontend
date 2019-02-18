@@ -1,0 +1,17 @@
+<mat-card fxFlexFill fxLayout="column">
+  <mat-card-title>Last blocks</mat-card-title>
+  <ng-container [ngSuspense]="lastBlocksHeaders$">
+    <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
+    <lto-loading-spinner *ngSuspensePlaceholder="300"></lto-loading-spinner>
+    <explorer-card-content-table fxFlex="1 1 auto">
+      <explorer-blocks-table *ngSuspenseSuccess="let blocks" [blocks]="blocks"></explorer-blocks-table>
+    </explorer-card-content-table>
+  </ng-container>
+  <mat-card-actions>
+    <div fxLayout="row" fxLayoutAlign="end center">
+      <a mat-button color="primary" routerLink="/blocks"><span>All blocks</span>
+        <mat-icon>chevron_right</mat-icon>
+      </a>
+    </div>
+  </mat-card-actions>
+</mat-card>

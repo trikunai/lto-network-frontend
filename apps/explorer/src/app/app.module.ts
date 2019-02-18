@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
 import { CoreModule as LtoCoreModule } from '@lto/core';
@@ -13,6 +14,7 @@ import { SharedModule } from './shared';
   imports: [
     BrowserModule,
     SharedModule,
+    HttpClientModule,
     LtoCoreModule.forRoot({
       publicNodeHost: environment.ltoPublicNodeHost
     }),

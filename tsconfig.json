@@ -14,7 +14,7 @@
     "baseUrl": ".",
     "paths": {
       "@lto/core": ["libs/core/src/index.ts"],
-      "@lto/components": ["libs/components/src/index.ts"]
+      "@lto/common": ["libs/common/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"],
