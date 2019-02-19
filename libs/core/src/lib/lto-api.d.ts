@@ -52,5 +52,6 @@ declare namespace LTO.API {
     amount?: number;
     anchors: string[];
     signature?: string;
+    transfers?: Array<{ recipient: string; amount: number }>;
   }
 }

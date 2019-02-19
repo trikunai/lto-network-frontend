@@ -100,6 +100,10 @@ export class MassTransferTransaction extends Transaction {
   get signature(): string {
     return this._apiData.proofs ? this._apiData.proofs[0] : '';
   }
+
+  get transfers() {
+    return this._apiData.transfers || [];
+  }
 }
 
 export class DataTransaction extends Transaction {
