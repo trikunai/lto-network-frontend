@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LtoPublicNodeService, Transaction } from '@lto/core';
+import { LtoPublicNodeService, Transaction, Encoding, TransactionType } from '@lto/core';
 import { switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -11,11 +11,19 @@ import { Observable } from 'rxjs';
 })
 export class TransactionDetailsComponent implements OnInit {
   transaction$: Observable<Transaction>;
+  anchorsEncoding = Encoding.hex;
+  Encoding = Encoding;
+  TransactionType = TransactionType;
 
   constructor(private _route: ActivatedRoute, private _publicNode: LtoPublicNodeService) {
     this.transaction$ = _route.params.pipe(
       switchMap(params => _publicNode.transaction(params.transactionId))
     );
   }
+
   ngOnInit() {}
+
+  setAnchorsEncoding(encoding: Encoding) {
+    this.anchorsEncoding = encoding;
+  }
 }

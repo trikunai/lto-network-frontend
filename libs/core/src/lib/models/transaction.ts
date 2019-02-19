@@ -2,6 +2,7 @@ import { TransactionType } from './transaction-type';
 
 export abstract class Transaction {
   abstract type: TransactionType;
+  abstract signature: string;
 
   static fromJSON(apiData: LTO.API.Transaction[]): Transaction[];
   static fromJSON(apiData: LTO.API.Transaction): Transaction;
@@ -66,10 +67,6 @@ export abstract class Transaction {
     return 0;
   }
 
-  get signature(): string {
-    return this._apiData.proofs[0];
-  }
-
   get anchors(): string[] {
     return this._apiData.anchors || [];
   }
@@ -79,26 +76,54 @@ export abstract class Transaction {
 
 export class TransferTransaction extends Transaction {
   readonly type = TransactionType.TRANSFER;
+  get signature(): string {
+    return this._apiData.signature || '';
+  }
 }
 
 export class LeaseTransaction extends Transaction {
   readonly type = TransactionType.LEASE;
+  get signature(): string {
+    return this._apiData.signature || '';
+  }
 }
 
 export class CancelLeaseTransaction extends Transaction {
   readonly type = TransactionType.CANCEL_LEASE;
+  get signature(): string {
+    return this._apiData.signature || '';
+  }
 }
 
 export class MassTransferTransaction extends Transaction {
   readonly type = TransactionType.MASS_TRANSFER;
+  get signature(): string {
+    return this._apiData.proofs ? this._apiData.proofs[0] : '';
+  }
+}
+
+export class DataTransaction extends Transaction {
+  readonly type = TransactionType.DATA;
+
+  get anchors() {
+    return [];
+  }
+
+  get signature(): string {
+    return this._apiData.proofs ? this._apiData.proofs[0] : '';
+  }
 }
 
 export class AnchorTransaction extends Transaction {
   readonly type = TransactionType.ANCHOR;
-}
 
-export class Anchor2Transaction extends Transaction {
-  readonly type = TransactionType.ANCHOR2;
+  get anchors(): string[] {
+    return this._apiData.anchors;
+  }
+
+  get signature(): string {
+    return this._apiData.proofs ? this._apiData.proofs[0] : '';
+  }
 }
 
 function getConstructor(type: TransactionType) {
@@ -111,9 +136,9 @@ function getConstructor(type: TransactionType) {
       return CancelLeaseTransaction;
     case TransactionType.MASS_TRANSFER:
       return MassTransferTransaction;
+    case TransactionType.DATA:
+      return DataTransaction;
     case TransactionType.ANCHOR:
       return AnchorTransaction;
-    case TransactionType.ANCHOR2:
-      return Anchor2Transaction;
   }
 }

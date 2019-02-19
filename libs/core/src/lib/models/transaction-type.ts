@@ -3,6 +3,6 @@ export enum TransactionType {
   LEASE = 8,
   CANCEL_LEASE = 9,
   MASS_TRANSFER = 11,
-  ANCHOR = 12,
-  ANCHOR2 = 15
+  DATA = 12,
+  ANCHOR = 15
 }

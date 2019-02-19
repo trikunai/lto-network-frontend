@@ -29,8 +29,8 @@ export class BlockDetailsComponent implements OnInit {
         return 'Lease';
       case TransactionType.CANCEL_LEASE:
         return 'Lease cancel';
+      case TransactionType.DATA:
       case TransactionType.ANCHOR:
-      case TransactionType.ANCHOR2:
         return 'Anchors';
     }
 

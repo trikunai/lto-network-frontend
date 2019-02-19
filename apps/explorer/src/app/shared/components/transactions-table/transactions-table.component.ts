@@ -36,8 +36,8 @@ export class TransactionsTableComponent implements OnInit {
             return ['id', 'fee', 'timestamp', 'sender', 'total_amount'];
           case TransactionType.CANCEL_LEASE:
             return ['id', 'fee', 'timestamp', 'sender', 'leasing'];
+          case TransactionType.DATA:
           case TransactionType.ANCHOR:
-          case TransactionType.ANCHOR2:
             return ['id', 'fee', 'timestamp', 'sender'];
           default:
             return ['id', 'sender', 'amount'];

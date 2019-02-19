@@ -51,5 +51,6 @@ declare namespace LTO.API {
     version: number;
     amount?: number;
     anchors: string[];
+    signature?: string;
   }
 }
