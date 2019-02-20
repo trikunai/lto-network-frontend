@@ -46,7 +46,7 @@
     <ng-container *ngIf="block.transactions.length !== 0">
       <h3 class="mat-h3">Transactions</h3>
       <mat-card *ngFor="let transactionsGroup of block.groupedTransactions | keyvalue" class="transactions-card">
-        <mat-card-title>{{getTransactionName(transactionsGroup.key)}}</mat-card-title>
+        <mat-card-title>{{transactionsGroup.key | transactionLabel}}</mat-card-title>
         <explorer-card-content-table>
           <explorer-transactions-table [transactionsType]="transactionsGroup.key" [transactions]="transactionsGroup.value"></explorer-transactions-table>
         </explorer-card-content-table>

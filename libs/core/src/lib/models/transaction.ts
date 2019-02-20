@@ -53,18 +53,8 @@ export abstract class Transaction {
     return this._apiData.id;
   }
 
-  get leaseId(): string {
-    console.warn('Transaction model; TODO: Add leaseId');
-    return '';
-  }
-
   get block(): number {
     return this._apiData.height || 0;
-  }
-
-  get totalAmount(): number {
-    console.warn('Transaction model; TODO: Add totalAmount');
-    return 0;
   }
 
   get anchors(): string[] {
@@ -90,6 +80,11 @@ export class LeaseTransaction extends Transaction {
 
 export class CancelLeaseTransaction extends Transaction {
   readonly type = TransactionType.CANCEL_LEASE;
+
+  get leaseId(): string {
+    return this._apiData.lease ? this._apiData.lease.id : '';
+  }
+
   get signature(): string {
     return this._apiData.signature || '';
   }
@@ -99,6 +94,11 @@ export class MassTransferTransaction extends Transaction {
   readonly type = TransactionType.MASS_TRANSFER;
   get signature(): string {
     return this._apiData.proofs ? this._apiData.proofs[0] : '';
+  }
+
+  get totalAmount(): number {
+    console.warn('Transaction model; TODO: Add totalAmount');
+    return 0;
   }
 
   get transfers() {

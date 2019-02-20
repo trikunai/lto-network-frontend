@@ -1,0 +1,85 @@
+:host {
+  display: block;
+  max-width: 720px;
+  width: 100%;
+  position: relative;
+  height: 38px;
+}
+
+
+@import '~@angular/material/theming';
+
+.input-container {
+  color: rgba(0, 0, 0, 0.52);
+  position: relative;
+  background: rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  transition: all 0.3s;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.icon-box {
+  margin: 0 16px;
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+
+  mat-icon {
+    margin-top: 10px;
+  }
+}
+
+input {
+  position: relative;
+  z-index: 1;
+  background: none;
+  outline: none;
+  border: none;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  padding: 0 15px;
+  box-sizing: border-box;
+  color: rgba(0, 0, 0, 0.52);
+  font-weight: 400;
+  padding-left: 70px;
+  font-family: 'Roboto', sans-serif;
+
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.52);
+  }
+
+  @media screen and (max-width: 600px) {
+    padding-left: 15px;
+  }
+}
+
+.input-container.focused {
+  background: rgba(255, 255, 255, 1);
+  @include mat-elevation(4);
+
+  mat-icon,
+  input {
+    color: rgba(0, 0, 0, 0.82);
+    transition: all 0.3s;
+  }
+}
+
+.option {
+  span {
+    font-size: 16px;
+    line-height: 16px;
+  }
+
+  .label {
+    font-size: 14px;
+    line-height: 14px;
+    color: rgba(0, 0, 0, 0.52);
+  }
+}

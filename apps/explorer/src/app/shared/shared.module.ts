@@ -10,12 +10,14 @@ import {
   MatCardModule,
   MatTableModule,
   MatProgressSpinnerModule,
-  MatMenuModule
+  MatMenuModule,
+  MatSnackBarModule
 } from '@angular/material';
 import { NgSuspenseModule } from 'ng-suspense';
 import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
 import { BlocksTableComponent } from './components/blocks-table/blocks-table.component';
 import { CardContentTableComponent } from './components/card-content-table/card-content-table.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   imports: [
@@ -23,9 +25,15 @@ import { CardContentTableComponent } from './components/card-content-table/card-
     RouterModule.forChild([]),
     LtoCommonModule,
     CommonModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatIconModule
   ],
-  declarations: [TransactionsTableComponent, BlocksTableComponent, CardContentTableComponent],
+  declarations: [
+    TransactionsTableComponent,
+    BlocksTableComponent,
+    CardContentTableComponent,
+    SearchComponent
+  ],
   exports: [
     CommonModule,
     LtoCommonModule,
@@ -40,7 +48,9 @@ import { CardContentTableComponent } from './components/card-content-table/card-
     NgSuspenseModule,
     TransactionsTableComponent,
     BlocksTableComponent,
-    CardContentTableComponent
+    CardContentTableComponent,
+    SearchComponent,
+    MatSnackBarModule
   ]
 })
 export class SharedModule {}

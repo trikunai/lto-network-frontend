@@ -53,5 +53,6 @@ declare namespace LTO.API {
     anchors: string[];
     signature?: string;
     transfers?: Array<{ recipient: string; amount: number }>;
+    lease?: Transaction;
   }
 }

@@ -32,9 +32,15 @@ export class LtoPublicNodeServiceImpl implements LtoPublicNodeService {
   }
 
   block(height: number | string) {
-    return this._http
-      .get<LTO.API.Block>(`${this._host}/blocks/at/${height}`)
-      .pipe(map(apiData => Block.fromJSON(apiData)));
+    return this._http.get<any>(`${this._host}/blocks/at/${height}`).pipe(
+      map(apiData => {
+        if (apiData.status) {
+          throw new Error('Block does not exists');
+        }
+
+        return Block.fromJSON(apiData as LTO.API.Block);
+      })
+    );
   }
 
   transaction(id: string) {
@@ -45,8 +51,8 @@ export class LtoPublicNodeServiceImpl implements LtoPublicNodeService {
 
   transactions(address: string, limit: number) {
     return this._http
-      .get<LTO.API.Transaction[]>(`${this._host}/transactions/address/${address}/limit/${limit}`)
-      .pipe(map(apiData => Transaction.fromJSON(apiData)));
+      .get<LTO.API.Transaction[][]>(`${this._host}/transactions/address/${address}/limit/${limit}`)
+      .pipe(map(apiData => Transaction.fromJSON(apiData[0])));
   }
 
   balance(address: string) {

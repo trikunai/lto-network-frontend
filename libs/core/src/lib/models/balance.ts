@@ -3,5 +3,21 @@ export class Balance {
     return new Balance(apiData);
   }
 
-  protected constructor(private _data: LTO.API.Balance) {}
+  get regular(): number {
+    return this._apiData.regular;
+  }
+
+  get generating(): number {
+    return this._apiData.generating;
+  }
+
+  get available(): number {
+    return this._apiData.available;
+  }
+
+  get effective(): number {
+    return this._apiData.effective;
+  }
+
+  protected constructor(private _apiData: LTO.API.Balance) {}
 }
