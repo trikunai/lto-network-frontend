@@ -61,7 +61,7 @@
     <mat-card-title>Anchors</mat-card-title>
     <mat-card-content>
       <div class="anchor" *ngFor="let anchor of transaction.anchors">
-        <lto-responsive-text [text]="anchor | encode:anchorsEncoding"></lto-responsive-text>
+        <lto-responsive-text lg="117" md="100" sm="63" xs="33" [text]="anchor | encode:anchorsEncoding"></lto-responsive-text>
       </div>
     </mat-card-content>
     <mat-card-actions>
