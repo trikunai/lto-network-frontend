@@ -1,5 +1,5 @@
-import { TransactionType } from './transaction-type';
-
+import { TransactionType } from "./transaction-type";
+// @dynamic
 export abstract class Transaction {
   abstract type: TransactionType;
   abstract signature: string;
@@ -20,7 +20,9 @@ export abstract class Transaction {
     return new ctor(apiData);
   }
 
-  static group(transactions: Transaction[]): Map<TransactionType, Transaction[]> {
+  static group(
+    transactions: Transaction[]
+  ): Map<TransactionType, Transaction[]> {
     return transactions.reduce((group, transaction) => {
       const transactionsOfType = group.get(transaction.type) || [];
       group.set(transaction.type, [...transactionsOfType, transaction]);
@@ -42,7 +44,7 @@ export abstract class Transaction {
   }
 
   get recipient() {
-    return this._apiData.recipient || '';
+    return this._apiData.recipient || "";
   }
 
   get amount(): number {
@@ -67,14 +69,14 @@ export abstract class Transaction {
 export class TransferTransaction extends Transaction {
   readonly type = TransactionType.TRANSFER;
   get signature(): string {
-    return this._apiData.signature || '';
+    return this._apiData.signature || "";
   }
 }
 
 export class LeaseTransaction extends Transaction {
   readonly type = TransactionType.LEASE;
   get signature(): string {
-    return this._apiData.signature || '';
+    return this._apiData.signature || "";
   }
 }
 
@@ -82,27 +84,18 @@ export class CancelLeaseTransaction extends Transaction {
   readonly type = TransactionType.CANCEL_LEASE;
 
   get leaseId(): string {
-    return this._apiData.lease ? this._apiData.lease.id : '';
+    return this._apiData.lease ? this._apiData.lease.id : "";
   }
 
   get signature(): string {
-    return this._apiData.signature || '';
+    return this._apiData.signature || "";
   }
 }
 
 export class MassTransferTransaction extends Transaction {
   readonly type = TransactionType.MASS_TRANSFER;
   get signature(): string {
-    return this._apiData.proofs ? this._apiData.proofs[0] : '';
-  }
-
-  get amount(): number {
-    if (!this._apiData.transfers) {
-      return 0;
-    }
-    return this._apiData.transfers.reduce((total, transfer) => {
-      return total + transfer.amount;
-    }, 0);
+    return this._apiData.proofs ? this._apiData.proofs[0] : "";
   }
 
   get transfers() {
@@ -118,7 +111,7 @@ export class DataTransaction extends Transaction {
   }
 
   get signature(): string {
-    return this._apiData.proofs ? this._apiData.proofs[0] : '';
+    return this._apiData.proofs ? this._apiData.proofs[0] : "";
   }
 }
 
@@ -130,7 +123,7 @@ export class AnchorTransaction extends Transaction {
   }
 
   get signature(): string {
-    return this._apiData.proofs ? this._apiData.proofs[0] : '';
+    return this._apiData.proofs ? this._apiData.proofs[0] : "";
   }
 }
 

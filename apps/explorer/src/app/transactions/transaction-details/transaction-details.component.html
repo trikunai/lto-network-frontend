@@ -17,7 +17,7 @@
       </div>
       <div class="item">
         <div class="label">Type</div>
-        <div class="value">{{transaction.type}}</div>
+        <div class="value">{{transaction.type | transactionLabel}} (Type {{transaction.type}})</div>
       </div>
       <div class="item">
         <div class="label">Timestamp</div>
@@ -42,6 +42,13 @@
         <div class="label">Signature</div>
         <div class="value">
           <lto-responsive-text xs="25" sm="50" [text]="transaction.signature"></lto-responsive-text>
+        </div>
+      </div>
+
+      <div class="item" *ngIf="showAmount(transaction)">
+        <div class="label">Amount</div>
+        <div class="value">
+          {{transaction.amount | lto | number}}
         </div>
       </div>
     </mat-card-content>

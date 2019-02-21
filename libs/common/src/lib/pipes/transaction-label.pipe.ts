@@ -16,8 +16,9 @@ export class TransactionLabelPipe implements PipeTransform {
       case TransactionType.CANCEL_LEASE:
         return 'Lease cancel';
       case TransactionType.DATA:
+        return 'Data';
       case TransactionType.ANCHOR:
-        return 'Anchors';
+        return 'Anchor';
     }
   }
 }

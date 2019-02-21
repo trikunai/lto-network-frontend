@@ -26,4 +26,15 @@ export class TransactionDetailsComponent implements OnInit {
   setAnchorsEncoding(encoding: Encoding) {
     this.anchorsEncoding = encoding;
   }
+
+  showAmount(transaction: Transaction): boolean {
+    switch (transaction.type) {
+      case TransactionType.TRANSFER:
+      case TransactionType.MASS_TRANSFER:
+      case TransactionType.LEASE:
+        return true;
+    }
+
+    return false;
+  }
 }

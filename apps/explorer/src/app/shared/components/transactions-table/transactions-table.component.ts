@@ -33,7 +33,7 @@ export class TransactionsTableComponent implements OnInit {
           case TransactionType.LEASE:
             return ['id', 'fee', 'timestamp', 'sender', 'recipient', 'amount'];
           case TransactionType.MASS_TRANSFER:
-            return ['id', 'fee', 'timestamp', 'sender', 'total_amount'];
+            return ['id', 'fee', 'timestamp', 'sender', 'amount'];
           case TransactionType.CANCEL_LEASE:
             return ['id', 'fee', 'timestamp', 'sender', 'leasing'];
           case TransactionType.DATA:
