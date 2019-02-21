@@ -4,7 +4,9 @@
     <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
     <lto-loading-spinner *ngSuspensePlaceholder="300"></lto-loading-spinner>
     <ng-container *ngSuspenseSuccess="let transactions">
-      <explorer-transactions-table *ngIf="transactions.length; else noTransactionsTpl" [transactions]="transactions"></explorer-transactions-table>
+      <explorer-card-content-table *ngIf="transactions.length; else noTransactionsTpl">
+        <explorer-transactions-table [transactions]="transactions"></explorer-transactions-table>
+      </explorer-card-content-table>
     </ng-container>
   </ng-container>
 </mat-card>

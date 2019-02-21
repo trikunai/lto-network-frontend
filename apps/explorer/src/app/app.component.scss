@@ -21,6 +21,20 @@ mat-toolbar {
   .home-link {
     outline: none;
     cursor: pointer;
+
+    img {
+      height: 30px;
+      margin-right: 6px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #9e70d2;
+    }
+  }
+
+  explorer-search {
+    margin-left: 16px;
   }
 
 }

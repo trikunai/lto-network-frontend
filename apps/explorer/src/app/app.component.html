@@ -1,6 +1,11 @@
 <mat-toolbar fxLayout="row">
-  <h3 class="mat-h3 home-link" routerLink="/">Explorer</h3>
-  <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center center">
+  <h3 class="mat-h3 home-link">
+    <a routerLink="/" fxLayout="row" fxLayoutAlign="start center">
+      <img src="assets/logo.png" alt="">
+      Explorer
+    </a>
+  </h3>
+  <div fxFlex="1 1 auto" fxLayout="row" fxLayoutAlign="center center" fxHide.xs>
     <explorer-search (search)="search($event)" placeholder="Transaction id, address or block"></explorer-search>
   </div>
 </mat-toolbar>
