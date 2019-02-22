@@ -38,7 +38,8 @@
   <mat-card *ngFor="let group of transactions | keyvalue">
     <mat-card-title>{{group.key | transactionLabel}}</mat-card-title>
     <explorer-card-content-table>
-      <explorer-transactions-table [transactionsType]="group.key" [transactions]="group.value"></explorer-transactions-table>
+      <explorer-transactions-table [walletAddress]="address$ | async" [directionColumn]="true" [transactionsType]="group.key"
+        [transactions]="group.value"></explorer-transactions-table>
     </explorer-card-content-table>
   </mat-card>
 </ng-template>

@@ -19,11 +19,15 @@ export class TransactionsTableComponent implements OnInit {
   @Input()
   transactions!: Transaction[];
 
+  @Input() directionColumn = false;
+  @Input() walletAddress = '';
+
   columns$: Observable<string[]>;
   private _type$ = new BehaviorSubject<TransactionType | null>(null);
   constructor(private _screen: ScreenService) {
     this.columns$ = combineLatest(_screen.size$, this._type$).pipe(
       map(([screenSize, transactionType]) => {
+        let columns: string[];
         if (screenSize === ScreenSize.XS) {
           return ['id'];
         }
@@ -31,20 +35,34 @@ export class TransactionsTableComponent implements OnInit {
         switch (transactionType) {
           case TransactionType.TRANSFER:
           case TransactionType.LEASE:
-            return ['id', 'fee', 'timestamp', 'sender', 'recipient', 'amount'];
+            columns = ['id', 'fee', 'timestamp', 'sender', 'recipient', 'amount'];
+            if (this.directionColumn) {
+              columns = ['direction', ...columns];
+            }
+            break;
           case TransactionType.MASS_TRANSFER:
-            return ['id', 'fee', 'timestamp', 'sender', 'amount'];
+            columns = ['id', 'fee', 'timestamp', 'sender', 'amount'];
+            break;
           case TransactionType.CANCEL_LEASE:
-            return ['id', 'fee', 'timestamp', 'sender', 'leasing'];
+            columns = ['id', 'fee', 'timestamp', 'sender', 'leasing'];
+            break;
           case TransactionType.DATA:
           case TransactionType.ANCHOR:
-            return ['id', 'fee', 'timestamp', 'sender'];
+            columns = ['id', 'fee', 'timestamp', 'sender'];
+            break;
           default:
-            return ['id', 'sender', 'amount'];
+            columns = ['id', 'sender', 'amount'];
+            break;
         }
+
+        return columns;
       })
     );
   }
 
   ngOnInit() {}
+
+  isOutgoing(transaction: Transaction) {
+    return transaction.sender === this.walletAddress;
+  }
 }
