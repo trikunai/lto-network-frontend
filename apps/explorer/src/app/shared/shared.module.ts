@@ -13,6 +13,7 @@ import {
   MatMenuModule,
   MatSnackBarModule
 } from '@angular/material';
+import { LineChartModule } from '@swimlane/ngx-charts';
 import { NgSuspenseModule } from 'ng-suspense';
 import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
 import { BlocksTableComponent } from './components/blocks-table/blocks-table.component';
@@ -50,7 +51,8 @@ import { SearchComponent } from './components/search/search.component';
     BlocksTableComponent,
     CardContentTableComponent,
     SearchComponent,
-    MatSnackBarModule
+    MatSnackBarModule,
+    LineChartModule
   ]
 })
 export class SharedModule {}

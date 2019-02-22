@@ -21,5 +21,5 @@
     }
   },
   "exclude": ["node_modules", "tmp"],
-  "files": ["libs/core/src/lib/lto-api.d.ts"]
+  "files": ["libs/core/src/lib/lto-api.d.ts", "libs/core/src/lib/stats.api.d.ts"]
 }

@@ -1,7 +1,9 @@
-<mat-card fxFlexFill>
+<mat-card fxFlexFill fxLayout="column">
   <mat-card-title>Unconfirmed transactions</mat-card-title>
   <ng-container [ngSuspense]="transactions$">
-    <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
+    <div *ngSuspenseError fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+      <span>Unable to load transactions</span>
+    </div>
     <lto-loading-spinner *ngSuspensePlaceholder="300"></lto-loading-spinner>
     <ng-container *ngSuspenseSuccess="let transactions">
       <explorer-card-content-table *ngIf="transactions.length; else noTransactionsTpl">
@@ -11,7 +13,9 @@
   </ng-container>
 </mat-card>
 <ng-template #noTransactionsTpl>
-  <mat-card-content>
-    <p>All transactions confirmed</p>
+  <mat-card-content fxFlex="1 1 auto">
+    <div fxFlexFill fxLayout="column" fxLayoutAlign="center center">
+      <span>All transactions confirmed</span>
+    </div>
   </mat-card-content>
 </ng-template>

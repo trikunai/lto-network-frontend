@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-title>Statistics</mat-card-title>
+  <mat-card-content>
+    <div class="chart-container" [ngSuspense]="chartData$">
+      <div class="error" *ngSuspenseError fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+        <span>Unable to load statistics</span>
+      </div>
+      <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
+      <ngx-charts-line-chart *ngSuspenseSuccess="let stats" [xAxis]="true" [yAxis]="true" [showGridLines]="false"
+        [customColors]="colors" [results]="stats"></ngx-charts-line-chart>
+    </div>
+  </mat-card-content>
+</mat-card>

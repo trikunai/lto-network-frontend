@@ -55,4 +55,9 @@ declare namespace LTO.API {
     transfers?: Array<{ recipient: string; amount: number }>;
     lease?: Transaction;
   }
+
+  export interface Stats {
+    transactions: number;
+    date: string;
+  }
 }

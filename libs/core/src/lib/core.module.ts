@@ -1,5 +1,10 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
-import { LtoPublicNodeService, EncoderService, LTO_PUBLIC_NODE_HOST } from './services';
+import {
+  LtoPublicNodeService,
+  EncoderService,
+  LTO_PUBLIC_NODE_HOST,
+  LTO_STATS_HOST
+} from './services';
 
 export interface CoreModuleConfig {
   publicNodeHost: string;
@@ -16,6 +21,10 @@ export class CoreModule {
         {
           provide: LTO_PUBLIC_NODE_HOST,
           useValue: config.publicNodeHost
+        },
+        {
+          provide: LTO_STATS_HOST,
+          useValue: ''
         }
       ]
     };

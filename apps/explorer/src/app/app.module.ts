@@ -5,10 +5,11 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 
 import { environment } from '../environments/environment';
-import { CoreModule as LtoCoreModule } from '@lto/core';
+import { CoreModule as LtoCoreModule, LTO_STATS_HOST } from '@lto/core';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -47,7 +48,12 @@ import { SharedModule } from './shared';
     CoreModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LTO_STATS_HOST,
+      useValue: 'https://stats.lto.network'
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
