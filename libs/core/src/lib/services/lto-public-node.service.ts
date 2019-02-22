@@ -1,7 +1,7 @@
 import { Injectable, InjectionToken, Inject, ClassProvider } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Transaction, Balance, Block } from '../models';
 import { BlockHeader } from '../models/block-header';
 

@@ -7,8 +7,8 @@ import { map } from 'rxjs/operators';
 export const LTO_STATS_HOST = new InjectionToken<string>('LTO_STATS_HOST');
 
 interface TransactionsStatsConfig {
-  startDate: string;
-  endDate: string;
+  startdate: string;
+  enddate: string;
   granularity?: 'sec' | 'hour' | 'day';
   type?: TransactionType;
 }
