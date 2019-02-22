@@ -30,11 +30,23 @@ import { SharedModule } from './shared';
           loadChildren: './blocks/blocks.module#BlocksModule'
         },
         {
+          path: 'block',
+          loadChildren: './blocks/blocks.module#BlocksModule'
+        },
+        {
           path: 'addresses',
           loadChildren: './addresses/addresses.module#AddressesModule'
         },
         {
+          path: 'address',
+          loadChildren: './addresses/addresses.module#AddressesModule'
+        },
+        {
           path: 'transactions',
+          loadChildren: './transactions/transactions.module#TransactionsModule'
+        },
+        {
+          path: 'transaction',
           loadChildren: './transactions/transactions.module#TransactionsModule'
         },
         {
