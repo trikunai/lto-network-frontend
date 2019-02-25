@@ -53,7 +53,20 @@
       </div>
     </mat-card-content>
   </mat-card>
+
+
+
   <ng-container *ngIf="transaction.type === TransactionType.ANCHOR">
+    <div class="receipt" *ngIf="hash$ | async as hash" [ngClass]="{'invalid': !transactionHasAnchor(hash, transaction)}"
+      fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="24px">
+      <mat-icon *ngIf="transactionHasAnchor(hash, transaction)">check_circle_outline</mat-icon>
+      <mat-icon *ngIf="transactionHasAnchor(hash, transaction) !== true">highlight_off</mat-icon>
+      <div fxLayout="column" fxFlex="1 1 auto">
+        <h2>Hash {{transactionHasAnchor(hash, transaction) ? 'valid' : 'invalid'}}</h2>
+        <div class="hash">{{hash}}</div>
+      </div>
+    </div>
+
     <ng-container *ngTemplateOutlet="anchorsTpl; context: { $implicit: transaction }">
     </ng-container>
   </ng-container>

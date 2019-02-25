@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { LtoPublicNodeService, Transaction, Encoding, TransactionType } from '@lto/core';
-import { switchMap } from 'rxjs/operators';
+import {
+  LtoPublicNodeService,
+  Transaction,
+  Encoding,
+  TransactionType,
+  AnchorTransaction
+} from '@lto/core';
+import { switchMap, map, filter } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -11,6 +17,8 @@ import { Observable } from 'rxjs';
 })
 export class TransactionDetailsComponent implements OnInit {
   transaction$: Observable<Transaction>;
+  hash$: Observable<string>;
+
   anchorsEncoding = Encoding.hex;
   Encoding = Encoding;
   TransactionType = TransactionType;
@@ -18,6 +26,11 @@ export class TransactionDetailsComponent implements OnInit {
   constructor(private _route: ActivatedRoute, private _publicNode: LtoPublicNodeService) {
     this.transaction$ = _route.params.pipe(
       switchMap(params => _publicNode.transaction(params.transactionId))
+    );
+
+    this.hash$ = _route.queryParams.pipe(
+      map(params => params['hash']),
+      filter(hash => !!hash)
     );
   }
 
@@ -36,5 +49,9 @@ export class TransactionDetailsComponent implements OnInit {
     }
 
     return false;
+  }
+
+  transactionHasAnchor(hash: string, transaction: AnchorTransaction) {
+    return transaction.anchors.some(anchor => anchor === hash);
   }
 }
