@@ -25,8 +25,8 @@
     "workspace-schematic": "./node_modules/.bin/nx workspace-schematic",
     "dep-graph": "./node_modules/.bin/nx dep-graph",
     "help": "./node_modules/.bin/nx help",
-    "build:explorer:testnet": "ng build explorer --configuration testnet --stats-json",
-    "build:explorer:mainnet": "ng build explorer --configuration mainnet --stats-json",
+    "build:explorer:testnet": "ng build explorer --configuration testnet --output-path dist/apps/explorer-testnet",
+    "build:explorer:mainnet": "ng build explorer --configuration mainnet --output-path dist/apps/explorer-mainnet",
     "explorer:bundle-report": "webpack-bundle-analyzer dist/apps/explorer/stats.json"
   },
   "private": true,
