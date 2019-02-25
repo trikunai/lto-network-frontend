@@ -1,4 +1,4 @@
-[![BCH compliance](https://bettercodehub.com/edge/badge/legalthings/lto-network-explorer?branch=master)](https://bettercodehub.com/)
+[![BCH compliance](https://bettercodehub.com/edge/badge/legalthings/lto-network-frontend?branch=master)](https://bettercodehub.com/)
 
 # LtoNetworkFrontend
 
