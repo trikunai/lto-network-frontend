@@ -11,8 +11,6 @@ import { Observable } from 'rxjs';
 })
 export class TransactionDetailsComponent {
   transaction$: Observable<Transaction>;
-  hash$: Observable<string>;
-
   receipt$: Observable<{ hash: string; valid: boolean }>;
 
   anchorsEncoding = Encoding.hex;
@@ -23,11 +21,6 @@ export class TransactionDetailsComponent {
     this.transaction$ = _route.params.pipe(
       switchMap(params => _publicNode.transaction(params.transactionId)),
       shareReplay(1)
-    );
-
-    this.hash$ = _route.queryParams.pipe(
-      map(params => params['hash']),
-      filter(hash => !!hash)
     );
 
     this.receipt$ = _route.queryParams.pipe(
