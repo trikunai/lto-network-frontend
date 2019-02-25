@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LtoPublicNodeService, Transaction, Encoding, TransactionType } from '@lto/core';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, map, filter, withLatestFrom, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -9,19 +9,32 @@ import { Observable } from 'rxjs';
   templateUrl: './transaction-details.component.html',
   styleUrls: ['./transaction-details.component.scss']
 })
-export class TransactionDetailsComponent implements OnInit {
+export class TransactionDetailsComponent {
   transaction$: Observable<Transaction>;
+  receipt$: Observable<{ hash: string; valid: boolean }>;
+
   anchorsEncoding = Encoding.hex;
   Encoding = Encoding;
   TransactionType = TransactionType;
 
-  constructor(private _route: ActivatedRoute, private _publicNode: LtoPublicNodeService) {
+  constructor(_route: ActivatedRoute, _publicNode: LtoPublicNodeService) {
     this.transaction$ = _route.params.pipe(
-      switchMap(params => _publicNode.transaction(params.transactionId))
+      switchMap(params => _publicNode.transaction(params.transactionId)),
+      shareReplay(1)
+    );
+
+    this.receipt$ = _route.queryParams.pipe(
+      map(params => params['hash']),
+      filter(hash => !!hash),
+      withLatestFrom(this.transaction$),
+      map(([hash, transaction]) => {
+        return {
+          hash,
+          valid: transaction.anchors.some(anchor => anchor === hash)
+        };
+      })
     );
   }
-
-  ngOnInit() {}
 
   setAnchorsEncoding(encoding: Encoding) {
     this.anchorsEncoding = encoding;
