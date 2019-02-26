@@ -148,5 +148,7 @@ function getConstructor(type: TransactionType) {
       return DataTransaction;
     case TransactionType.ANCHOR:
       return AnchorTransaction;
+    default:
+      throw new Error(`Uncnown transaction type ${type}`);
   }
 }

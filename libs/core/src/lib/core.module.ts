@@ -3,7 +3,8 @@ import {
   LtoPublicNodeService,
   EncoderService,
   LTO_PUBLIC_NODE_HOST,
-  LTO_STATS_HOST
+  LTO_STATS_HOST,
+  StatisticsService
 } from './services';
 
 export interface CoreModuleConfig {
@@ -11,7 +12,7 @@ export interface CoreModuleConfig {
 }
 
 @NgModule({
-  providers: [LtoPublicNodeService.provider, EncoderService.provider]
+  providers: [LtoPublicNodeService.provider, EncoderService.provider, StatisticsService.provider]
 })
 export class CoreModule {
   static forRoot(config: CoreModuleConfig): ModuleWithProviders {

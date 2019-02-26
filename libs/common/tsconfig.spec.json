@@ -4,6 +4,6 @@
     "outDir": "../../dist/out-tsc/libs/common",
     "types": ["jasmine", "node"]
   },
-  "files": ["src/test.ts"],
+  "files": ["src/test.ts", "../core/src/lib/lto-api.d.ts", "../core/src/lib/stats.api.d.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

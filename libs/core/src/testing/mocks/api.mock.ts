@@ -30,7 +30,7 @@ export function block(preset: Partial<LTO.API.Block> = {}): LTO.API.Block {
 
 export function transaction(preset: Partial<LTO.API.Transaction> = {}): LTO.API.Transaction {
   return {
-    type: faker.random.number({ min: 4, max: 14 }) as any,
+    type: 4,
     id: faker.random.uuid(),
     sender: faker.random.uuid(),
     senderPublicKey: faker.random.uuid(),

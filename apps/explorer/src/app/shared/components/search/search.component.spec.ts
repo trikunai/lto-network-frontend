@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatIconModule } from '@angular/material';
 
 import { SearchComponent } from './search.component';
 
@@ -8,9 +9,9 @@ describe('SearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchComponent ]
-    })
-    .compileComponents();
+      imports: [MatIconModule],
+      declarations: [SearchComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

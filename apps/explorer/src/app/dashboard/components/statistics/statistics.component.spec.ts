@@ -1,4 +1,7 @@
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { SharedModule } from '../../../shared';
+import { CoreTestingModule } from '@lto/core/testing';
 
 import { StatisticsComponent } from './statistics.component';
 
@@ -8,9 +11,9 @@ describe('StatisticsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StatisticsComponent ]
-    })
-    .compileComponents();
+      imports: [CoreTestingModule, SharedModule, NoopAnimationsModule],
+      declarations: [StatisticsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

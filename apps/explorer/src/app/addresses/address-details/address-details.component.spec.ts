@@ -1,4 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CoreTestingModule } from '@lto/core/testing';
+import { SharedModule } from '../../shared';
 
 import { AddressDetailsComponent } from './address-details.component';
 
@@ -8,9 +11,9 @@ describe('AddressDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddressDetailsComponent ]
-    })
-    .compileComponents();
+      imports: [SharedModule, RouterTestingModule, CoreTestingModule],
+      declarations: [AddressDetailsComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
