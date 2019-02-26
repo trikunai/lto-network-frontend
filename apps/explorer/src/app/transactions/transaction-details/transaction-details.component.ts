@@ -1,13 +1,15 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { LtoPublicNodeService, Transaction, Encoding, TransactionType } from '@lto/core';
+import { EncodePipe } from '@lto/common';
 import { switchMap, map, filter, withLatestFrom, shareReplay } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 @Component({
   selector: 'explorer-transaction-details',
   templateUrl: './transaction-details.component.html',
-  styleUrls: ['./transaction-details.component.scss']
+  styleUrls: ['./transaction-details.component.scss'],
+  providers: [EncodePipe]
 })
 export class TransactionDetailsComponent {
   transaction$: Observable<Transaction>;
@@ -17,7 +19,7 @@ export class TransactionDetailsComponent {
   Encoding = Encoding;
   TransactionType = TransactionType;
 
-  constructor(_route: ActivatedRoute, _publicNode: LtoPublicNodeService) {
+  constructor(_route: ActivatedRoute, _publicNode: LtoPublicNodeService, encodePipe: EncodePipe) {
     this.transaction$ = _route.params.pipe(
       switchMap(params => _publicNode.transaction(params.transactionId)),
       shareReplay(1)
@@ -30,7 +32,12 @@ export class TransactionDetailsComponent {
       map(([hash, transaction]) => {
         return {
           hash,
-          valid: transaction.anchors.some(anchor => anchor === hash)
+          valid: transaction.anchors.some(anchor => {
+            const base58 = encodePipe.transform(anchor, Encoding.base58);
+            const base64 = encodePipe.transform(anchor, Encoding.base64);
+            const hex = encodePipe.transform(anchor, Encoding.hex);
+            return hash === base58 || hash === base64 || hash === hex;
+          })
         };
       })
     );

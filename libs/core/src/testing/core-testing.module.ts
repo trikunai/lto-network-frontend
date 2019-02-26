@@ -1,12 +1,13 @@
 import { NgModule } from '@angular/core';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { LtoPublicNodeServiceMock, EncoderServiceMock, StatisticsServiceMock } from './mocks';
+import { EncoderService } from '../lib/services';
+import { LtoPublicNodeServiceMock, StatisticsServiceMock } from './mocks';
 
 @NgModule({
   imports: [HttpClientTestingModule],
   providers: [
     LtoPublicNodeServiceMock.provider,
-    EncoderServiceMock.provider,
+    EncoderService.provider,
     StatisticsServiceMock.provider
   ]
 })
