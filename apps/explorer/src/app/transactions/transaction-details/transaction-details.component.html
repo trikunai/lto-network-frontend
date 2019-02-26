@@ -2,7 +2,6 @@
   <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
   <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
   <ng-container *ngSuspenseSuccess="transactionTpl"></ng-container>
-
 </lto-content-section>
 
 <ng-template #transactionTpl let-transaction>
@@ -63,7 +62,9 @@
       <mat-icon *ngIf="receipt.valid !== true">highlight_off</mat-icon>
       <div fxLayout="column" fxFlex="1 1 auto">
         <h2>Hash {{receipt.valid ? 'valid' : 'invalid'}}</h2>
-        <div class="hash">{{receipt.hash}}</div>
+        <div class="hash">
+          <lto-responsive-text [text]="receipt.hash" lg="80" md="75" sm="63" xs="33"></lto-responsive-text>
+        </div>
       </div>
     </div>
 
