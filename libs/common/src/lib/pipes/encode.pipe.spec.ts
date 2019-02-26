@@ -1,16 +1,20 @@
 import { EncodePipe } from './encode.pipe';
-import { EncoderServiceMock } from '@lto/core/testing';
+
 import { EncoderService } from '@lto/core';
+import { TestBed } from '@angular/core/testing';
 
 describe('EncodePipe', () => {
-  let encoder: EncoderService;
+  let pipe: EncodePipe;
 
   beforeEach(() => {
-    encoder = new EncoderServiceMock();
+    TestBed.configureTestingModule({
+      providers: [EncodePipe, EncoderService.provider]
+    });
+
+    pipe = TestBed.get(EncodePipe);
   });
 
   it('create an instance', () => {
-    const pipe = new EncodePipe(encoder);
     expect(pipe).toBeTruthy();
   });
 });
