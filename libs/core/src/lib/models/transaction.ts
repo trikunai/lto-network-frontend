@@ -62,6 +62,14 @@ export abstract class Transaction {
   }
 
   protected constructor(protected _apiData: LTO.API.Transaction) {}
+
+  /**
+   * Checks if provided address is recipient or in recipients list (MASS_TRANSFER)
+   * @param address wallet address
+   */
+  isRecipient(address: string): boolean {
+    return this.recipient === address;
+  }
 }
 
 export class TransferTransaction extends Transaction {
@@ -107,6 +115,10 @@ export class MassTransferTransaction extends Transaction {
 
   get transfers() {
     return this._apiData.transfers || [];
+  }
+
+  isRecipient(address: string): boolean {
+    return this.transfers.some(transfer => transfer.recipient === address);
   }
 }
 

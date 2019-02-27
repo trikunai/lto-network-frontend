@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
 import { Transaction, TransactionType } from '@lto/core';
 import { ScreenService, ScreenSize } from '@lto/common';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
@@ -10,7 +10,7 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./transactions-table.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TransactionsTableComponent implements OnInit {
+export class TransactionsTableComponent {
   @Input()
   set transactionsType(type: TransactionType | null) {
     this._type$.next(type);
@@ -42,6 +42,9 @@ export class TransactionsTableComponent implements OnInit {
             break;
           case TransactionType.MASS_TRANSFER:
             columns = ['id', 'fee', 'timestamp', 'sender', 'amount'];
+            if (this.directionColumn) {
+              columns = ['direction', ...columns];
+            }
             break;
           case TransactionType.CANCEL_LEASE:
             columns = ['id', 'fee', 'timestamp', 'sender', 'leasing'];
@@ -60,9 +63,7 @@ export class TransactionsTableComponent implements OnInit {
     );
   }
 
-  ngOnInit() {}
-
   isOutgoing(transaction: Transaction) {
-    return transaction.sender === this.walletAddress;
+    return transaction.isRecipient(this.walletAddress) !== true;
   }
 }
