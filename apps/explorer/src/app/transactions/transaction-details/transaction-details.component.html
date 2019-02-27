@@ -16,26 +16,33 @@
       </div>
       <div class="item">
         <div class="label">Type</div>
-        <div class="value">{{transaction.type | transactionLabel}} (Type {{transaction.type}})</div>
+        <div class="value">
+          {{ transaction.type | transactionLabel }} (Type {{ transaction.type }})
+        </div>
       </div>
       <div class="item">
         <div class="label">Timestamp</div>
-        <div class="value">{{transaction.timestamp | date: 'medium'}}</div>
+        <div class="value">{{ transaction.timestamp | date: 'medium' }}</div>
       </div>
       <div class="item">
         <div class="label">Block</div>
-        <div class="value"><a [routerLink]="['/', 'blocks', transaction.block]">{{transaction.block}}</a></div>
+        <div class="value">
+          <a [routerLink]="['/', 'blocks', transaction.block]">{{ transaction.block }}</a>
+        </div>
       </div>
       <div class="item">
         <div class="label">Fee</div>
-        <div class="value">{{transaction.fee | lto}}</div>
+        <div class="value">{{ transaction.fee | lto }}</div>
       </div>
 
       <div class="item">
         <div class="label">Sender</div>
-        <div class="value"><a [routerLink]="['/', 'addresses', transaction.sender]">
+        <div class="value" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="8px">
+          <a [routerLink]="['/', 'addresses', transaction.sender]">
             <lto-responsive-text [text]="transaction.sender" xs="25"></lto-responsive-text>
-          </a></div>
+          </a>
+          <lto-clipboard-button [text]="transaction.sender"></lto-clipboard-button>
+        </div>
       </div>
       <div class="item">
         <div class="label">Signature</div>
@@ -46,24 +53,32 @@
 
       <div class="item" *ngIf="showAmount(transaction)">
         <div class="label">Amount</div>
-        <div class="value">
-          {{transaction.amount | lto | number}}
-        </div>
+        <div class="value">{{ transaction.amount | lto | number }}</div>
       </div>
     </mat-card-content>
   </mat-card>
 
-
-
   <ng-container *ngIf="transaction.type === TransactionType.ANCHOR">
-    <div class="receipt" *ngIf="receipt$ | async as receipt" [ngClass]="{'invalid': !receipt.valid}" fxLayout="row"
-      fxLayoutAlign="start center" fxLayoutGap="24px">
+    <div
+      class="receipt"
+      *ngIf="(receipt$ | async) as receipt"
+      [ngClass]="{ invalid: !receipt.valid }"
+      fxLayout="row"
+      fxLayoutAlign="start center"
+      fxLayoutGap="24px"
+    >
       <mat-icon *ngIf="receipt.valid">check_circle_outline</mat-icon>
       <mat-icon *ngIf="receipt.valid !== true">highlight_off</mat-icon>
       <div fxLayout="column" fxFlex="1 1 auto">
-        <h2>Hash {{receipt.valid ? 'valid' : 'invalid'}}</h2>
+        <h2>Hash {{ receipt.valid ? 'valid' : 'invalid' }}</h2>
         <div class="hash">
-          <lto-responsive-text [text]="receipt.hash" lg="80" md="75" sm="63" xs="33"></lto-responsive-text>
+          <lto-responsive-text
+            [text]="receipt.hash"
+            lg="80"
+            md="75"
+            sm="63"
+            xs="33"
+          ></lto-responsive-text>
         </div>
       </div>
     </div>
@@ -73,7 +88,9 @@
   </ng-container>
 
   <ng-container *ngIf="transaction.type === TransactionType.MASS_TRANSFER">
-    <ng-container *ngTemplateOutlet="transfersTpl; context: { $implicit: transaction }"></ng-container>
+    <ng-container
+      *ngTemplateOutlet="transfersTpl; context: { $implicit: transaction }"
+    ></ng-container>
   </ng-container>
 </ng-template>
 
@@ -82,11 +99,19 @@
     <mat-card-title>Anchors</mat-card-title>
     <mat-card-content>
       <div class="anchor" *ngFor="let anchor of transaction.anchors">
-        <lto-responsive-text lg="117" md="100" sm="63" xs="33" [text]="anchor | encode:anchorsEncoding"></lto-responsive-text>
+        <lto-responsive-text
+          lg="117"
+          md="100"
+          sm="63"
+          xs="33"
+          [text]="anchor | encode: anchorsEncoding"
+        ></lto-responsive-text>
       </div>
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button [matMenuTriggerFor]="encodingMenu">{{anchorsEncoding}} <mat-icon>arrow_drop_down</mat-icon></button>
+      <button mat-button [matMenuTriggerFor]="encodingMenu">
+        {{ anchorsEncoding }} <mat-icon>arrow_drop_down</mat-icon>
+      </button>
       <mat-menu #encodingMenu="matMenu">
         <button mat-menu-item (click)="setAnchorsEncoding(Encoding.hex)">hex</button>
         <button mat-menu-item (click)="setAnchorsEncoding(Encoding.base58)">base58</button>
@@ -100,17 +125,28 @@
   <mat-card>
     <mat-card-title>Transfers</mat-card-title>
     <explorer-card-content-table>
-      <table mat-table [dataSource]="transaction.transfers" aria-label="Transfers" fxFlex="1 1 auto">
+      <table
+        mat-table
+        [dataSource]="transaction.transfers"
+        aria-label="Transfers"
+        fxFlex="1 1 auto"
+      >
         <ng-container matColumnDef="recipient">
           <th mat-header-cell *matHeaderCellDef><span>Recipient</span></th>
-          <td mat-cell *matCellDef="let transfer"><a [routerLink]="['/', 'addresses', transfer.recipient]">
-              <lto-responsive-text xs="15" xl="40" [text]="transfer.recipient"></lto-responsive-text>
-            </a></td>
+          <td mat-cell *matCellDef="let transfer">
+            <a [routerLink]="['/', 'addresses', transfer.recipient]">
+              <lto-responsive-text
+                xs="15"
+                xl="40"
+                [text]="transfer.recipient"
+              ></lto-responsive-text>
+            </a>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="amount">
           <th mat-header-cell *matHeaderCellDef>Amount</th>
-          <td mat-cell *matCellDef="let transfer">{{transfer.amount | lto | number}}</td>
+          <td mat-cell *matCellDef="let transfer">{{ transfer.amount | lto | number }}</td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="['recipient', 'amount']"></tr>
