@@ -6,6 +6,10 @@ export class Block {
     return this._apiData.version;
   }
 
+  get height(): number {
+    return this._apiData.height;
+  }
+
   get timestamp(): number {
     return this._apiData.timestamp;
   }
