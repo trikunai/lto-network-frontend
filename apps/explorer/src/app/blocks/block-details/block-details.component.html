@@ -3,55 +3,76 @@
   <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
   <ng-container *ngSuspenseSuccess="let block">
     <mat-card class="block-info">
-      <mat-card-title>Block details</mat-card-title>
+      <mat-card-title>Block details ({{ block.height }})</mat-card-title>
       <mat-card-content fxLayout="column" fxLayoutGap="16px">
         <div class="item">
           <div class="label">Version</div>
-          <div class="value">{{block.version}}</div>
+          <div class="value">{{ block.version }}</div>
+        </div>
+        <div class="item">
+          <div class="label">Height</div>
+          <div class="value">{{ block.height }}</div>
         </div>
         <div class="item">
           <div class="label">Timestamp</div>
-          <div class="value">{{block.timestamp | date: 'medium'}}</div>
+          <div class="value">{{ block.timestamp | date: 'medium' }}</div>
         </div>
         <div class="item">
           <div class="label">Transactions</div>
-          <div class="value">{{block.transactions.length}}</div>
+          <div class="value">{{ block.transactions.length }}</div>
         </div>
         <div class="item">
           <div class="label">Parent block</div>
           <div class="value">
-            <lto-responsive-text xs="15" sm="30" double="true" [text]="block.parent"></lto-responsive-text>
+            <lto-responsive-text
+              xs="15"
+              sm="30"
+              double="true"
+              [text]="block.parent"
+            ></lto-responsive-text>
           </div>
         </div>
         <div class="item">
           <div class="label">Generator</div>
-          <div class="value"><a [routerLink]="['/', 'addresses', block.generator]">{{block.generator}}</a></div>
+          <div class="value">
+            <a [routerLink]="['/', 'addresses', block.generator]">{{ block.generator }}</a>
+          </div>
         </div>
         <div class="item">
           <div class="label">Signature</div>
           <div class="value">
-            <lto-responsive-text xs="15" sm="30" double="true" [text]="block.signature"></lto-responsive-text>
+            <lto-responsive-text
+              xs="15"
+              sm="30"
+              double="true"
+              [text]="block.signature"
+            ></lto-responsive-text>
           </div>
         </div>
         <div class="item">
           <div class="label">Size</div>
-          <div class="value">{{block.size}}</div>
+          <div class="value">{{ block.size }}</div>
         </div>
         <div class="item" *ngIf="block.hasConsensus">
           <div class="label">Base target</div>
-          <div class="value">{{block.baseTarget}}</div>
+          <div class="value">{{ block.baseTarget }}</div>
         </div>
       </mat-card-content>
     </mat-card>
     <ng-container *ngIf="block.transactions.length !== 0">
       <h3 class="mat-h3">Transactions</h3>
-      <mat-card *ngFor="let transactionsGroup of block.groupedTransactions | keyvalue" class="transactions-card">
-        <mat-card-title>{{transactionsGroup.key | transactionLabel}}</mat-card-title>
+      <mat-card
+        *ngFor="let transactionsGroup of (block.groupedTransactions | keyvalue)"
+        class="transactions-card"
+      >
+        <mat-card-title>{{ transactionsGroup.key | transactionLabel }}</mat-card-title>
         <explorer-card-content-table>
-          <explorer-transactions-table [transactionsType]="transactionsGroup.key" [transactions]="transactionsGroup.value"></explorer-transactions-table>
+          <explorer-transactions-table
+            [transactionsType]="transactionsGroup.key"
+            [transactions]="transactionsGroup.value"
+          ></explorer-transactions-table>
         </explorer-card-content-table>
       </mat-card>
     </ng-container>
-
   </ng-container>
 </lto-content-section>
