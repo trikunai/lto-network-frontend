@@ -1,26 +1,40 @@
 <lto-content-section>
   <mat-card>
-    <mat-card-title>Address balance</mat-card-title>
+    <mat-card-title>Wallet info</mat-card-title>
+    <mat-card-content>
+      <div class="item">
+        <div class="label">Address</div>
+        <div class="value">{{ address$ | async }}</div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card>
+    <mat-card-title>Balance</mat-card-title>
     <mat-card-content [ngSuspense]="balance$">
       <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
       <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
       <ng-container *ngSuspenseSuccess="let balance">
-        <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="16px" fxLayoutAlign="space-between">
+        <div
+          fxLayout="column"
+          fxLayout.gt-xs="row"
+          fxLayoutGap="16px"
+          fxLayoutAlign="space-between"
+        >
           <div class="item">
             <div class="label">Regular</div>
-            <div class="value">{{balance.regular | lto | number }}</div>
+            <div class="value">{{ balance.regular | lto | number }}</div>
           </div>
           <div class="item">
             <div class="label">Generating</div>
-            <div class="value">{{balance.generating | lto | number }}</div>
+            <div class="value">{{ balance.generating | lto | number }}</div>
           </div>
           <div class="item">
             <div class="label">Available</div>
-            <div class="value">{{balance.available | lto | number }}</div>
+            <div class="value">{{ balance.available | lto | number }}</div>
           </div>
           <div class="item">
             <div class="label">Effective</div>
-            <div class="value">{{balance.effective | lto | number }}</div>
+            <div class="value">{{ balance.effective | lto | number }}</div>
           </div>
         </div>
       </ng-container>
@@ -35,11 +49,15 @@
 </lto-content-section>
 
 <ng-template #transactionsTpl let-transactions>
-  <mat-card *ngFor="let group of transactions | keyvalue">
-    <mat-card-title>{{group.key | transactionLabel}}</mat-card-title>
+  <mat-card *ngFor="let group of (transactions | keyvalue)">
+    <mat-card-title>{{ group.key | transactionLabel }}</mat-card-title>
     <explorer-card-content-table>
-      <explorer-transactions-table [walletAddress]="address$ | async" [directionColumn]="true" [transactionsType]="group.key"
-        [transactions]="group.value"></explorer-transactions-table>
+      <explorer-transactions-table
+        [walletAddress]="address$ | async"
+        [directionColumn]="true"
+        [transactionsType]="group.key"
+        [transactions]="group.value"
+      ></explorer-transactions-table>
     </explorer-card-content-table>
   </mat-card>
 </ng-template>
