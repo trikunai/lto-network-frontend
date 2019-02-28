@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { LtoCommonModule } from '@lto/common';
+import { LtoCommonModule, ClipboardButtonModule } from '@lto/common';
 import {
   MatToolbarModule,
   MatIconModule,
@@ -52,7 +52,8 @@ import { SearchComponent } from './components/search/search.component';
     CardContentTableComponent,
     SearchComponent,
     MatSnackBarModule,
-    LineChartModule
+    LineChartModule,
+    ClipboardButtonModule
   ]
 })
 export class SharedModule {}
