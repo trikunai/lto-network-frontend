@@ -2,7 +2,12 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { LtoCommonModule, ClipboardButtonModule, EncodePipeModule } from '@lto/common';
+import {
+  LtoCommonModule,
+  ClipboardButtonModule,
+  EncodePipeModule,
+  LtoPipeModule
+} from '@lto/common';
 import {
   MatToolbarModule,
   MatIconModule,
@@ -28,7 +33,8 @@ import { SearchComponent } from './components/search/search.component';
     CommonModule,
     FlexLayoutModule,
     MatIconModule,
-    EncodePipeModule
+    EncodePipeModule,
+    LtoPipeModule
   ],
   declarations: [
     TransactionsTableComponent,
@@ -55,7 +61,8 @@ import { SearchComponent } from './components/search/search.component';
     MatSnackBarModule,
     LineChartModule,
     ClipboardButtonModule,
-    EncodePipeModule
+    EncodePipeModule,
+    LtoPipeModule
   ]
 })
 export class SharedModule {}
