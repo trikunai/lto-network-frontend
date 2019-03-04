@@ -5,7 +5,6 @@ import { ContentSectionComponent } from './components/content-section/content-se
 import { HttpErrorComponent } from './components/http-error/http-error.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
 import { ResponsiveTextComponent } from './components/responsive-text/responsive-text.component';
-import { TransactionLabelPipe } from './pipes/transaction-label.pipe';
 
 const commonComponents = [
   ContentSectionComponent,
@@ -13,11 +12,10 @@ const commonComponents = [
   LoadingSpinnerComponent,
   ResponsiveTextComponent
 ];
-const commonPipes = [TransactionLabelPipe];
 
 @NgModule({
   imports: [CommonModule, MatProgressSpinnerModule],
-  declarations: [...commonComponents, ...commonPipes],
-  exports: [...commonComponents, ...commonPipes]
+  declarations: [...commonComponents],
+  exports: [...commonComponents]
 })
 export class LtoCommonModule {}

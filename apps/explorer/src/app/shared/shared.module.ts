@@ -6,7 +6,8 @@ import {
   LtoCommonModule,
   ClipboardButtonModule,
   EncodePipeModule,
-  LtoPipeModule
+  LtoPipeModule,
+  TransactionLabelPipeModule
 } from '@lto/common';
 import {
   MatToolbarModule,
@@ -34,7 +35,8 @@ import { SearchComponent } from './components/search/search.component';
     FlexLayoutModule,
     MatIconModule,
     EncodePipeModule,
-    LtoPipeModule
+    LtoPipeModule,
+    TransactionLabelPipeModule
   ],
   declarations: [
     TransactionsTableComponent,
@@ -62,7 +64,8 @@ import { SearchComponent } from './components/search/search.component';
     LineChartModule,
     ClipboardButtonModule,
     EncodePipeModule,
-    LtoPipeModule
+    LtoPipeModule,
+    TransactionLabelPipeModule
   ]
 })
 export class SharedModule {}
