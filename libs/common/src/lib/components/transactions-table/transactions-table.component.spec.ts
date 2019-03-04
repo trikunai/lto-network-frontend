@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { MatTableModule } from '@angular/material';
+import { LtoPipeModule } from '../../pipes';
+import { ResponsiveTextModule } from '../responsive-text';
 import { TransactionsTableComponent } from './transactions-table.component';
 
 describe('TransactionsTableComponent', () => {
@@ -8,9 +10,9 @@ describe('TransactionsTableComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TransactionsTableComponent ]
-    })
-    .compileComponents();
+      imports: [MatTableModule, LtoPipeModule, ResponsiveTextModule],
+      declarations: [TransactionsTableComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
