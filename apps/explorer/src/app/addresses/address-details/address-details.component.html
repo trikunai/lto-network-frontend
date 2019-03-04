@@ -14,12 +14,7 @@
       <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
       <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
       <ng-container *ngSuspenseSuccess="let balance">
-        <div
-          fxLayout="column"
-          fxLayout.gt-xs="row"
-          fxLayoutGap="16px"
-          fxLayoutAlign="space-between"
-        >
+        <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="16px" fxLayoutAlign="space-between">
           <div class="item">
             <div class="label">Regular</div>
             <div class="value">{{ balance.regular | lto | number }}</div>
@@ -52,12 +47,21 @@
   <mat-card *ngFor="let group of (transactions | keyvalue)">
     <mat-card-title>{{ group.key | transactionLabel }}</mat-card-title>
     <explorer-card-content-table>
-      <explorer-transactions-table
-        [walletAddress]="address$ | async"
-        [directionColumn]="true"
-        [transactionsType]="group.key"
-        [transactions]="group.value"
-      ></explorer-transactions-table>
+      <lto-transactions-table [transactionLinkTemplate]="transactionLinkTpl" [addressLinkTemplate]="addressLinkTpl"
+        [walletAddress]="address$ | async" [directionColumn]="true" [transactionsType]="group.key" [transactions]="group.value"></lto-transactions-table>
     </explorer-card-content-table>
   </mat-card>
+</ng-template>
+
+
+<ng-template #addressLinkTpl let-address>
+  <a *ngIf="address" [routerLink]="['/', 'addresses', address]">
+    <lto-responsive-text xs="5" xl="15" [text]="address"></lto-responsive-text>
+  </a>
+</ng-template>
+
+<ng-template #transactionLinkTpl let-transactionId>
+  <a [routerLink]="['/', 'transactions', transactionId]">
+    <lto-responsive-text xs="30" xl="15" [text]="transactionId"></lto-responsive-text>
+  </a>
 </ng-template>
