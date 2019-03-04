@@ -35,24 +35,22 @@
       </ng-container>
     </mat-card-content>
   </mat-card>
-  <h3 class="mat-h3">Last 100 transactions</h3>
-  <ng-container [ngSuspense]="transactions$">
-    <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
-    <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
-    <ng-container *ngSuspenseSuccess="transactionsTpl"></ng-container>
+  <h3 class="mat-h3">Transactions</h3>
+  <ng-container *ngFor="let dataSource of transactions$ | async">
+    <mat-card *ngIf="(dataSource.pageData$ | async)?.total !== 0">
+      <mat-card-title>{{dataSource.type | transactionLabel}}</mat-card-title>
+      <explorer-card-content-table>
+        <lto-transactions-table [transactionLinkTemplate]="transactionLinkTpl" [addressLinkTemplate]="addressLinkTpl"
+          [walletAddress]="address$ | async" [directionColumn]="true" [transactionsType]="dataSource.type"
+          [transactions]="(dataSource.pageData$ | async)?.transactions"></lto-transactions-table>
+      </explorer-card-content-table>
+      <mat-card-actions>
+        <mat-paginator (page)="dataSource.update($event)" [pageSizeOptions]="[25, 50, 100]" [pageSize]="dataSource.limit$ | async"
+          [length]="(dataSource.pageData$ | async)?.total"></mat-paginator>
+      </mat-card-actions>
+    </mat-card>
   </ng-container>
 </lto-content-section>
-
-<ng-template #transactionsTpl let-transactions>
-  <mat-card *ngFor="let group of (transactions | keyvalue)">
-    <mat-card-title>{{ group.key | transactionLabel }}</mat-card-title>
-    <explorer-card-content-table>
-      <lto-transactions-table [transactionLinkTemplate]="transactionLinkTpl" [addressLinkTemplate]="addressLinkTpl"
-        [walletAddress]="address$ | async" [directionColumn]="true" [transactionsType]="group.key" [transactions]="group.value"></lto-transactions-table>
-    </explorer-card-content-table>
-  </mat-card>
-</ng-template>
-
 
 <ng-template #addressLinkTpl let-address>
   <a *ngIf="address" [routerLink]="['/', 'addresses', address]">

@@ -19,7 +19,8 @@ import {
   MatTableModule,
   MatProgressSpinnerModule,
   MatMenuModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { LineChartModule } from '@swimlane/ngx-charts';
 import { NgSuspenseModule } from 'ng-suspense';
@@ -54,7 +55,6 @@ import { SearchComponent } from './components/search/search.component';
     MatMenuModule,
     FlexLayoutModule,
     NgSuspenseModule,
-
     BlocksTableComponent,
     CardContentTableComponent,
     SearchComponent,
@@ -65,7 +65,8 @@ import { SearchComponent } from './components/search/search.component';
     LtoPipeModule,
     TransactionLabelPipeModule,
     ResponsiveTextModule,
-    TransactionsTableModule
+    TransactionsTableModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule {}
