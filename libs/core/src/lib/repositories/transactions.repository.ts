@@ -21,6 +21,7 @@ interface TransactionsListConfig {
 }
 
 @Injectable()
+// tslint:disable:no-use-before-declare
 export class TransactionsRepositoryImpl implements TransactionsRepository {
   constructor(private _http: HttpClient, @Inject(LTO_PUBLIC_NODE_HOST) private _host: string) {}
   get(id: string) {
