@@ -2,7 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { RouterModule } from '@angular/router';
-import { LtoCommonModule, ClipboardButtonModule } from '@lto/common';
+import {
+  LtoCommonModule,
+  ClipboardButtonModule,
+  EncodePipeModule,
+  LtoPipeModule,
+  TransactionLabelPipeModule,
+  ResponsiveTextModule,
+  TransactionsTableModule
+} from '@lto/common';
 import {
   MatToolbarModule,
   MatIconModule,
@@ -11,11 +19,11 @@ import {
   MatTableModule,
   MatProgressSpinnerModule,
   MatMenuModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatPaginatorModule
 } from '@angular/material';
 import { LineChartModule } from '@swimlane/ngx-charts';
 import { NgSuspenseModule } from 'ng-suspense';
-import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
 import { BlocksTableComponent } from './components/blocks-table/blocks-table.component';
 import { CardContentTableComponent } from './components/card-content-table/card-content-table.component';
 import { SearchComponent } from './components/search/search.component';
@@ -27,14 +35,14 @@ import { SearchComponent } from './components/search/search.component';
     LtoCommonModule,
     CommonModule,
     FlexLayoutModule,
-    MatIconModule
+    MatIconModule,
+    EncodePipeModule,
+    LtoPipeModule,
+    TransactionLabelPipeModule,
+    ResponsiveTextModule,
+    TransactionsTableModule
   ],
-  declarations: [
-    TransactionsTableComponent,
-    BlocksTableComponent,
-    CardContentTableComponent,
-    SearchComponent
-  ],
+  declarations: [BlocksTableComponent, CardContentTableComponent, SearchComponent],
   exports: [
     CommonModule,
     LtoCommonModule,
@@ -47,13 +55,18 @@ import { SearchComponent } from './components/search/search.component';
     MatMenuModule,
     FlexLayoutModule,
     NgSuspenseModule,
-    TransactionsTableComponent,
     BlocksTableComponent,
     CardContentTableComponent,
     SearchComponent,
     MatSnackBarModule,
     LineChartModule,
-    ClipboardButtonModule
+    ClipboardButtonModule,
+    EncodePipeModule,
+    LtoPipeModule,
+    TransactionLabelPipeModule,
+    ResponsiveTextModule,
+    TransactionsTableModule,
+    MatPaginatorModule
   ]
 })
 export class SharedModule {}

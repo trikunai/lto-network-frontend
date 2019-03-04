@@ -12,9 +12,9 @@
   <!-- Id Column -->
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef><span>Id</span></th>
-    <td mat-cell *matCellDef="let transaction"><a [routerLink]="['/', 'transactions', transaction.id]">
-        <lto-responsive-text xs="30" xl="15" [text]="transaction.id"></lto-responsive-text>
-      </a></td>
+    <td mat-cell *matCellDef="let transaction">
+      <ng-container *ngTemplateOutlet="transactionLinkTemplate || defaultTransactionLinkTpl; context: {$implicit: transaction.id}"></ng-container>
+    </td>
   </ng-container>
 
   <!-- Name Column -->
@@ -30,17 +30,15 @@
 
   <ng-container matColumnDef="sender">
     <th mat-header-cell *matHeaderCellDef>Sender</th>
-    <td mat-cell *matCellDef="let transaction"><a [routerLink]="['/', 'addresses', transaction.sender]">
-        <lto-responsive-text xs="5" xl="15" [text]="transaction.sender"></lto-responsive-text>
-      </a></td>
+    <td mat-cell *matCellDef="let transaction">
+      <ng-container *ngTemplateOutlet="addressLinkTemplate || defaultAddressLinkTpl; context: {$implicit: transaction.sender}"></ng-container>
+    </td>
   </ng-container>
 
   <ng-container matColumnDef="recipient">
     <th mat-header-cell *matHeaderCellDef>Recipient</th>
     <td mat-cell *matCellDef="let transaction">
-      <a *ngIf="transaction.recipient" [routerLink]="['/', 'addresses', transaction.recipient]">
-        <lto-responsive-text xs="5" xl="15" [text]="transaction.recipient"></lto-responsive-text>
-      </a>
+      <ng-container *ngTemplateOutlet="addressLinkTemplate || defaultAddressLinkTpl; context: {$implicit: transaction.recipient}"></ng-container>
     </td>
   </ng-container>
 
@@ -57,3 +55,11 @@
   <tr mat-header-row *matHeaderRowDef="columns$ | async"></tr>
   <tr mat-row *matRowDef="let row; columns: columns$ | async;"></tr>
 </table>
+
+<ng-template #defaultAddressLinkTpl let-transactionId>
+  <lto-responsive-text xs="30" xl="15" [text]="transactionId"></lto-responsive-text>
+</ng-template>
+
+<ng-template #defaultTransactionLinkTpl let-address>
+  <lto-responsive-text xs="5" xl="15" [text]="address"></lto-responsive-text>
+</ng-template>

@@ -1,3 +1,3 @@
-export * from './lto.pipe';
-export * from './encode.pipe';
-export * from './transaction-label.pipe';
+export * from './lto';
+export * from './encode';
+export * from './transaction-label';

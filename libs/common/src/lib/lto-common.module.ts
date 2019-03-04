@@ -4,22 +4,12 @@ import { MatProgressSpinnerModule } from '@angular/material';
 import { ContentSectionComponent } from './components/content-section/content-section.component';
 import { HttpErrorComponent } from './components/http-error/http-error.component';
 import { LoadingSpinnerComponent } from './components/loading-spinner/loading-spinner.component';
-import { ResponsiveTextComponent } from './components/responsive-text/responsive-text.component';
-import { LtoPipe } from './pipes/lto.pipe';
-import { EncodePipe } from './pipes/encode.pipe';
-import { TransactionLabelPipe } from './pipes/transaction-label.pipe';
 
-const commonComponents = [
-  ContentSectionComponent,
-  HttpErrorComponent,
-  LoadingSpinnerComponent,
-  ResponsiveTextComponent
-];
-const commonPipes = [LtoPipe, EncodePipe, TransactionLabelPipe];
+const commonComponents = [ContentSectionComponent, HttpErrorComponent, LoadingSpinnerComponent];
 
 @NgModule({
   imports: [CommonModule, MatProgressSpinnerModule],
-  declarations: [...commonComponents, ...commonPipes],
-  exports: [...commonComponents, ...commonPipes]
+  declarations: [...commonComponents],
+  exports: [...commonComponents]
 })
 export class LtoCommonModule {}

@@ -1,5 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SharedModule } from '../shared';
+import { RouterTestingModule } from '@angular/router/testing';
 import { CoreTestingModule } from '@lto/core/testing';
 import { LastBlocksComponent } from './components/last-blocks/last-blocks.component';
 import { UnconfirmedTransactionsComponent } from './components/unconfirmed-transactions/unconfirmed-transactions.component';
@@ -14,7 +15,7 @@ describe('DashboardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CoreTestingModule, SharedModule, NoopAnimationsModule],
+      imports: [CoreTestingModule, SharedModule, NoopAnimationsModule, RouterTestingModule],
       declarations: [
         DashboardComponent,
         UnconfirmedTransactionsComponent,

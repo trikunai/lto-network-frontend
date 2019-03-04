@@ -1,16 +1,15 @@
-import { Component, ChangeDetectionStrategy, Input } from '@angular/core';
+import { Component, OnInit, Input, TemplateRef } from '@angular/core';
 import { Transaction, TransactionType } from '@lto/core';
-import { ScreenService, ScreenSize } from '@lto/common';
+import { ScreenService, ScreenSize } from '../../services';
 import { BehaviorSubject, Observable, combineLatest } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Component({
-  selector: 'explorer-transactions-table',
+  selector: 'lto-transactions-table',
   templateUrl: './transactions-table.component.html',
-  styleUrls: ['./transactions-table.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./transactions-table.component.scss']
 })
-export class TransactionsTableComponent {
+export class TransactionsTableComponent implements OnInit {
   @Input()
   set transactionsType(type: TransactionType | null) {
     this._type$.next(type);
@@ -19,11 +18,15 @@ export class TransactionsTableComponent {
   @Input()
   transactions!: Transaction[];
 
+  @Input() addressLinkTemplate: TemplateRef<any> | null = null;
+  @Input() transactionLinkTemplate: TemplateRef<any> | null = null;
+
   @Input() directionColumn = false;
   @Input() walletAddress = '';
 
   columns$: Observable<string[]>;
   private _type$ = new BehaviorSubject<TransactionType | null>(null);
+
   constructor(private _screen: ScreenService) {
     this.columns$ = combineLatest(_screen.size$, this._type$).pipe(
       map(([screenSize, transactionType]) => {
@@ -62,6 +65,8 @@ export class TransactionsTableComponent {
       })
     );
   }
+
+  ngOnInit() {}
 
   isOutgoing(transaction: Transaction) {
     return transaction.isRecipient(this.walletAddress) !== true;

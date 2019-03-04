@@ -1,11 +1,10 @@
-import { Injectable, InjectionToken, Inject, ClassProvider } from '@angular/core';
+import { Injectable, Inject, ClassProvider } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { Transaction, Balance, Block } from '../models';
 import { BlockHeader } from '../models/block-header';
-
-export const LTO_PUBLIC_NODE_HOST = new InjectionToken<string>('LTO_PUBLIC_NODE_HOST');
+import { LTO_PUBLIC_NODE_HOST } from '../tokens';
 
 @Injectable()
 // tslint:disable:no-use-before-declare
