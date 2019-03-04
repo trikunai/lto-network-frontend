@@ -23,7 +23,6 @@ import {
 } from '@angular/material';
 import { LineChartModule } from '@swimlane/ngx-charts';
 import { NgSuspenseModule } from 'ng-suspense';
-import { TransactionsTableComponent } from './components/transactions-table/transactions-table.component';
 import { BlocksTableComponent } from './components/blocks-table/blocks-table.component';
 import { CardContentTableComponent } from './components/card-content-table/card-content-table.component';
 import { SearchComponent } from './components/search/search.component';
@@ -42,12 +41,7 @@ import { SearchComponent } from './components/search/search.component';
     ResponsiveTextModule,
     TransactionsTableModule
   ],
-  declarations: [
-    TransactionsTableComponent,
-    BlocksTableComponent,
-    CardContentTableComponent,
-    SearchComponent
-  ],
+  declarations: [BlocksTableComponent, CardContentTableComponent, SearchComponent],
   exports: [
     CommonModule,
     LtoCommonModule,
@@ -60,7 +54,7 @@ import { SearchComponent } from './components/search/search.component';
     MatMenuModule,
     FlexLayoutModule,
     NgSuspenseModule,
-    TransactionsTableComponent,
+
     BlocksTableComponent,
     CardContentTableComponent,
     SearchComponent,
