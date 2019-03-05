@@ -9,7 +9,8 @@ import {
   LtoPipeModule,
   TransactionLabelPipeModule,
   ResponsiveTextModule,
-  TransactionsTableModule
+  TransactionsTableModule,
+  ContentSectionModule
 } from '@lto/common';
 import {
   MatToolbarModule,
@@ -40,7 +41,8 @@ import { SearchComponent } from './components/search/search.component';
     LtoPipeModule,
     TransactionLabelPipeModule,
     ResponsiveTextModule,
-    TransactionsTableModule
+    TransactionsTableModule,
+    ContentSectionModule
   ],
   declarations: [BlocksTableComponent, CardContentTableComponent, SearchComponent],
   exports: [
@@ -66,7 +68,8 @@ import { SearchComponent } from './components/search/search.component';
     TransactionLabelPipeModule,
     ResponsiveTextModule,
     TransactionsTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    ContentSectionModule
   ]
 })
 export class SharedModule {}

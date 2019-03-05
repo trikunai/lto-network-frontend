@@ -1,0 +1,24 @@
+<mat-form-field appearance="outline">
+  <mat-label>Account</mat-label>
+  <mat-select [formControl]="selectedAccount" panelClass="available-accounts-select">
+    <mat-select-trigger>
+      <ng-container *ngTemplateOutlet="accountTpl; context: {$implicit: selectedAccount.value }"></ng-container>
+    </mat-select-trigger>
+    <mat-option *ngFor="let account of accounts" [value]="account" class="account-option">
+      <ng-container *ngTemplateOutlet="accountTpl; context: {$implicit: account, canDelete: true }"></ng-container>
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<ng-template #accountTpl let-account let-canDelete="canDelete">
+  <div class="account" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="16px">
+    <mat-icon>account_circle</mat-icon>
+    <div fxFlex="1 1 auto" fxLayout="column" fxLayoutGap.gt-xs="6px">
+      <div class="account-name">{{account.accountName}}</div>
+      <div class="wallet-address" fxHide.xs>{{account.address}}</div>
+    </div>
+    <div *ngIf="canDelete">
+      <mat-icon class="close-icon" (click)="delete(account, $event)">close</mat-icon>
+    </div>
+  </div>
+</ng-template>

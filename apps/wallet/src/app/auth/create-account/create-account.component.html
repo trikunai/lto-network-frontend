@@ -1,0 +1,19 @@
+<h1 class="mat-h1">Create account</h1>
+<p>Accounts are stored locally and never transfered by network.</p>
+<form [formGroup]="newAccountForm" fxLayout="column" (submit)="saveAccountAndLogin()">
+  <mat-form-field>
+    <mat-label>Wallet address</mat-label>
+    <input matInput type="text" formControlName="address">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Account name</mat-label>
+    <input matInput type="text" formControlName="accountName">
+  </mat-form-field>
+  <wallet-password-form-field formControlName="password" [confirmation]="true"></wallet-password-form-field>
+  <div fxLayout="row" class="actions" fxLayout.xs="column-reverse" fxLayoutGap="8px">
+    <a routerLink="../login" mat-button color="primary">Login</a>
+    <a routerLink="../import" mat-button color="primary">Import account</a>
+    <span fxFlex="1 1 auto"></span>
+    <button mat-flat-button color="primary">Create</button>
+  </div>
+</form>

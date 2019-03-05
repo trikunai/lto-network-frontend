@@ -3,7 +3,8 @@ import {
   LtoPublicNodeService,
   EncoderService,
   LTO_STATS_HOST,
-  StatisticsService
+  StatisticsService,
+  LtoService
 } from './services';
 import { TransactionsRepository } from './repositories';
 import { LTO_PUBLIC_NODE_HOST } from './tokens';
@@ -17,7 +18,8 @@ export interface CoreModuleConfig {
     LtoPublicNodeService.provider,
     EncoderService.provider,
     StatisticsService.provider,
-    TransactionsRepository.provider
+    TransactionsRepository.provider,
+    LtoService.provider
   ]
 })
 export class CoreModule {

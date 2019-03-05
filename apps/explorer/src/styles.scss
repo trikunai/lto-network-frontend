@@ -1,4 +1,8 @@
-@import './theme/theme.scss';
+@import '~@angular/material/theming';
+@import 'variables.scss';
+
+@include mat-core($typography);
+@include angular-material-theme(mat-light-theme($primary-palette, $accent-palette, $warn-palette));
 
 html,
 body {
@@ -9,4 +13,19 @@ body {
 body {
   margin: 0;
   font-family: 'Open Sans', "Helvetica Neue", sans-serif;
+}
+
+
+mat-card.mat-card {
+  border-radius: $border-radius;
+  box-sizing: border-box;
+}
+
+a:not(.mat-button) {
+  color: $link-color;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

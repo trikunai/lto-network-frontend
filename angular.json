@@ -24,7 +24,10 @@
             "tsConfig": "apps/explorer/tsconfig.app.json",
             "assets": ["apps/explorer/src/favicon.ico", "apps/explorer/src/assets"],
             "styles": ["apps/explorer/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["theme"]
+            }
           },
           "configurations": {
             "testnet": {
@@ -95,7 +98,10 @@
             "karmaConfig": "apps/explorer/karma.conf.js",
             "styles": ["apps/explorer/src/styles.scss"],
             "scripts": [],
-            "assets": ["apps/explorer/src/favicon.ico", "apps/explorer/src/assets"]
+            "assets": ["apps/explorer/src/favicon.ico", "apps/explorer/src/assets"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["theme"]
+            }
           }
         },
         "lint": {
@@ -155,13 +161,36 @@
             "tsConfig": "apps/wallet/tsconfig.app.json",
             "assets": ["apps/wallet/src/favicon.ico", "apps/wallet/src/assets"],
             "styles": ["apps/wallet/src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "stylePreprocessorOptions": {
+              "includePaths": ["theme"]
+            }
           },
           "configurations": {
-            "production": {
+            "testnet": {
               "fileReplacements": [{
                 "replace": "apps/wallet/src/environments/environment.ts",
-                "with": "apps/wallet/src/environments/environment.prod.ts"
+                "with": "apps/wallet/src/environments/environment.testnet.ts"
+              }],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [{
+                "type": "initial",
+                "maximumWarning": "2mb",
+                "maximumError": "5mb"
+              }]
+            },
+            "mainnet": {
+              "fileReplacements": [{
+                "replace": "apps/wallet/src/environments/environment.ts",
+                "with": "apps/wallet/src/environments/environment.mainnet.ts"
               }],
               "optimization": true,
               "outputHashing": "all",
@@ -206,7 +235,10 @@
             "karmaConfig": "apps/wallet/karma.conf.js",
             "styles": ["apps/wallet/src/styles.scss"],
             "scripts": [],
-            "assets": ["apps/wallet/src/favicon.ico", "apps/wallet/src/assets"]
+            "assets": ["apps/wallet/src/favicon.ico", "apps/wallet/src/assets"],
+            "stylePreprocessorOptions": {
+              "includePaths": ["theme"]
+            }
           }
         },
         "lint": {

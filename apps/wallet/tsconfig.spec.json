@@ -4,6 +4,6 @@
     "outDir": "../../dist/out-tsc/apps/wallet",
     "types": ["jasmine", "node"]
   },
-  "files": ["src/test.ts", "src/polyfills.ts"],
+  "files": ["src/test.ts", "src/polyfills.ts", "../../libs/core/src/lib/lto-api.d.ts", "../../libs/core/src/lib/stats.api.d.ts"],
   "include": ["**/*.spec.ts", "**/*.d.ts"]
 }

@@ -1,0 +1,15 @@
+<h1 class="mat-h1">Login</h1>
+<form [formGroup]="loginForm" fxLayout="column" autocomplete="off">
+  <ng-container *ngIf="availableAccounts$ | async as accounts">
+    <wallet-available-accounts *ngIf="accounts.length" formControlName="account" [accounts]="accounts" (deleteAccount)="deleteAccount($event)"></wallet-available-accounts>
+  </ng-container>
+
+  <wallet-password-form-field appearance="outline" formControlName="password">
+  </wallet-password-form-field>
+  <div fxLayout="row" class="actions" fxLayout.xs="column-reverse" fxLayoutGap="8px">
+    <a routerLink="../create" mat-button color="primary">Create account</a>
+    <a routerLink="../import" mat-button color="primary">Import account</a>
+    <span fxFlex="1 1 auto"></span>
+    <button mat-flat-button color="primary" (click)="loginAndRedirect()">Login</button>
+  </div>
+</form>

@@ -1,0 +1,45 @@
+:host {
+  display: block;
+  margin: .25em 0;
+  position: relative;
+}
+
+:host::ng-deep {
+  .mat-form-field-infix {
+    padding: 8px 0 !important;
+  }
+
+  .mat-select-arrow-wrapper {
+    transform: none !important;
+  }
+
+  .mat-option {
+    height: 70px !important;
+  }
+}
+
+mat-form-field {
+  display: block;
+}
+
+.account-option {
+  height: 70px !important;
+}
+
+.account {
+  .account-name {
+    font-size: 16px;
+    line-height: 16px;
+    // margin-bottom: 6px;
+  }
+
+  .wallet-address {
+    font-size: 12px;
+    line-height: 12px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .close-icon {
+    margin-right: 0 !important;
+  }
+}
