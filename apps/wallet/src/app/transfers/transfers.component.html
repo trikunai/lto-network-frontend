@@ -1,0 +1,30 @@
+<lto-content-section>
+  <mat-card>
+    <mat-card-title>Transfers</mat-card-title>
+    <mat-card-content [ngSuspense]="transfers$">
+      <ng-container *ngSuspenseSuccess="let transfersPage">
+        <lto-transactions-table
+          [transactions]="transfersPage.transactions"
+          [transactionLinkTemplate]="transactionLinkTpl"
+          [addressLinkTemplate]="addressLinkTpl"
+          [walletAddress]="address$ | async"
+          [directionColumn]="true"
+          [transactionsType]="4"
+        >
+        </lto-transactions-table>
+      </ng-container>
+    </mat-card-content>
+  </mat-card>
+</lto-content-section>
+
+<ng-template #addressLinkTpl let-address>
+  <a *ngIf="address" [routerLink]="['/', 'addresses', address]">
+    <lto-responsive-text xs="5" xl="15" [text]="address"></lto-responsive-text>
+  </a>
+</ng-template>
+
+<ng-template #transactionLinkTpl let-transactionId>
+  <a [routerLink]="['/', 'transactions', transactionId]">
+    <lto-responsive-text xs="30" xl="15" [text]="transactionId"></lto-responsive-text>
+  </a>
+</ng-template>

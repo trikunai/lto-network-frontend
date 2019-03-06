@@ -1,20 +1,21 @@
 <mat-toolbar>
-  <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm>
-    <mat-icon>menu</mat-icon>
-  </button>
+  <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-sm><mat-icon>menu</mat-icon></button>
   <h3 class="mat-h3">LTO Wallet</h3>
 </mat-toolbar>
-<mat-sidenav-container [hasBackdrop]="false">
+<mat-sidenav-container [hasBackdrop]="false" fxFlex="1 1 auto">
   <mat-sidenav [opened]="true" [mode]="'side'" #sidenav>
     <nav class="navigation" fxLayout="column">
-      <a *ngFor="let section of navigationSections" [routerLink]="section.route" fxLayout="row" fxLayoutAlign="start center"
-        routerLinkActive="active">
-        <mat-icon>{{section.icon}}</mat-icon>
-        <span>{{section.label}}</span>
+      <a
+        *ngFor="let section of navigationSections"
+        [routerLink]="section.route"
+        fxLayout="row"
+        fxLayoutAlign="start center"
+        routerLinkActive="active"
+      >
+        <mat-icon>{{ section.icon }}</mat-icon>
+        <span>{{ section.label }}</span>
       </a>
     </nav>
   </mat-sidenav>
-  <mat-sidenav-content>
-    <router-outlet></router-outlet>
-  </mat-sidenav-content>
+  <mat-sidenav-content> <router-outlet></router-outlet> </mat-sidenav-content>
 </mat-sidenav-container>

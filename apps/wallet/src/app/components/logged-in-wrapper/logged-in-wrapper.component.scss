@@ -5,6 +5,11 @@ $break-small: 599px;
 :host {
   display: block;
   padding-top: 64px;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 
   @media screen and (max-width: $break-small) {
     padding-top: 56px;
@@ -17,7 +22,7 @@ mat-toolbar {
   left: 0;
   right: 0;
   z-index: 10;
-  background: #FFF;
+  background: #fff;
   border-bottom: solid 1px rgba(0, 0, 0, 0.12);
 
   h3 {
@@ -27,7 +32,7 @@ mat-toolbar {
 
 mat-sidenav-container {
   min-height: calc(100vh - 64px);
-  background: #FFF;
+  background: #fff;
 
   @media screen and (max-width: $break-small) {
     min-height: calc(100vh - 56px);
@@ -68,5 +73,4 @@ mat-sidenav {
       }
     }
   }
-
 }
