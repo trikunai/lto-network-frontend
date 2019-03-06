@@ -3,20 +3,13 @@
 # LTO Network Frontend
 <a href="https://github.com/legalthings/lto-network-frontend/"><img src="https://lto.network/img/meta.png"></a>
 <!-- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).  -->
+
+## The Goal of Angular CLI
+
 The project is a momorepo based project. 
 By now there are two main projects:
 1. Explorer
 1. Wallet
-
-## The Goal of Angular CLI
-
-The Angular CLI creates, manages, builds and test your Angular projects. It's built on top of the
-Angular DevKit.
-
-## The Goal of DevKit
-
-DevKit's goal is to provide a large set of libraries that can be used to manage, develop, deploy and
-analyze your code.
 
 ## Requirements
 
@@ -38,7 +31,7 @@ If you haven't done it already, make a fork of this [repo](https://github.com/le
 
 1. If you want to run `explorer` project, you can just use `ng serve`.
 1. If you want to run `wallet` project, you need to use `ng serve wallet`.
-
+1. Running `ng serve` will deploy the angular cli default for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 <!-- ## Nrwl Extensions for Angular (Nx)
 
@@ -55,10 +48,20 @@ Nx is designed to help you create and build enterprise grade Angular application
 ## Generate your first application
 
 Run `ng generate app myapp` to generate an application. When using Nx, you can create multiple applications and libraries in the same CLI workspace. Read more [here](http://nrwl.io/nx). -->
-
+<!-- 
 ## Development server
 
-Run `ng serve --project=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `ng serve --project=myapp` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. -->
+
+## The Goal of Angular CLI
+
+The Angular CLI creates, manages, builds and test your Angular projects. It's built on top of the
+Angular DevKit.
+
+## The Goal of DevKit
+
+DevKit's goal is to provide a large set of libraries that can be used to manage, develop, deploy and
+analyze your code.
 
 ## Code scaffolding
 
