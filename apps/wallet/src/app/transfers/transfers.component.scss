@@ -1,0 +1,30 @@
+.table-container {
+  margin: 0 -16px;
+}
+table {
+  width: 100%;
+}
+
+.direction {
+  padding-right: 8px;
+
+  > div {
+    font-size: 10px;
+    text-align: center;
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    padding: 2px 4px;
+    width: 30px;
+    box-sizing: border-box;
+
+    &.in {
+      color: green;
+      border-color: green;
+    }
+
+    &.out {
+      color: orange;
+      border-color: orange;
+    }
+  }
+}

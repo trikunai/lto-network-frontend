@@ -15,9 +15,16 @@ import {
   MatSnackBarModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarConfig,
-  MatSidenavModule
+  MatSidenavModule,
+  MatTableModule
 } from '@angular/material';
-import { ContentSectionModule, TransactionsTableModule, ResponsiveTextModule } from '@lto/common';
+import {
+  ContentSectionModule,
+  TransactionsTableModule,
+  ResponsiveTextModule,
+  LtoPipeModule,
+  TransactionLabelPipeModule
+} from '@lto/common';
 
 @NgModule({
   declarations: [],
@@ -38,7 +45,10 @@ import { ContentSectionModule, TransactionsTableModule, ResponsiveTextModule } f
     MatSidenavModule,
     TransactionsTableModule,
     NgSuspenseModule,
-    ResponsiveTextModule
+    ResponsiveTextModule,
+    MatTableModule,
+    LtoPipeModule,
+    TransactionLabelPipeModule
   ],
   providers: [
     {
