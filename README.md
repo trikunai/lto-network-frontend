@@ -1,7 +1,7 @@
 [![BCH compliance](https://bettercodehub.com/edge/badge/legalthings/lto-network-frontend?branch=master)](https://bettercodehub.com/)
 
-# LtoNetworkFrontend
-
+# LTO Network Frontend
+<a href="https://github.com/legalthings/lto-network-frontend/"><img src="https://lto.network/img/meta.png"></a>
 <!-- This project was generated with [Angular CLI](https://github.com/angular/angular-cli) using [Nrwl Nx](https://nrwl.io/nx).  -->
 The project is a momorepo based project. 
 By now there are two main projects:
