@@ -1,6 +1,11 @@
 <lto-content-section>
-  <mat-card [ngSuspense]="transfers$">
-    <mat-card-title>Transfers</mat-card-title>
+  <mat-card [ngSuspense]="provider.pageData$" *ngFor="let provider of dataProviders">
+    <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+      <span fxFlex="1 1 auto">{{ provider.type | transactionLabel }}</span>
+      <button mat-flat-button color="primary" *ngIf="provider.type === TransactionType.TRANSFER">
+        New transfer
+      </button>
+    </mat-card-title>
     <ng-container *ngSuspenseSuccess="let transfersPage">
       <mat-card-content>
         <ng-container>
@@ -19,9 +24,9 @@
       <mat-card-actions>
         <mat-paginator
           [length]="transfersPage.total"
-          [pageSize]="transfersPaginator.pageSize$ | async"
-          [pageSizeOptions]="[5, 10, 25, 100]"
-          (page)="transfersPaginator.update($event)"
+          [pageSize]="provider.paginator.pageSize$ | async"
+          [pageSizeOptions]="[5, 10, 25]"
+          (page)="provider.paginator.update($event)"
         ></mat-paginator>
       </mat-card-actions>
     </ng-container>

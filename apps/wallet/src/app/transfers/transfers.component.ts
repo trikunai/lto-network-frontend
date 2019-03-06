@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionsRepository, LtoAccount, Paginator } from '@lto/core';
+import { TransactionsRepository, LtoAccount, Paginator, TransactionType } from '@lto/core';
 import { AuthService } from '../core';
 import { switchMap, filter, map } from 'rxjs/operators';
 import { combineLatest } from 'rxjs';
@@ -15,23 +15,33 @@ export class TransfersComponent implements OnInit {
     map(account => account.address)
   );
 
-  transfersPaginator = new Paginator();
-  massTransfersPaginator = new Paginator();
+  TransactionType = TransactionType;
 
-  transfers$ = combineLatest(this.address$, this.transfersPaginator.info$).pipe(
-    switchMap(([address, pagination]) => {
-      return this._transactionsRepo.list({
-        address,
-        index: 'transfer',
-        offset: pagination.offset,
-        limit: pagination.limit
-      });
-    })
-  );
+  dataProviders!: any[];
 
   constructor(private _auth: AuthService, private _transactionsRepo: TransactionsRepository) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.dataProviders = [TransactionType.TRANSFER, TransactionType.MASS_TRANSFER].map(type => {
+      const paginator = new Paginator(5);
+      const pageData$ = combineLatest(this.address$, paginator.info$).pipe(
+        switchMap(([address, pagination]) => {
+          return this._transactionsRepo.list({
+            address,
+            index: TransactionsRepository.indexForType(type),
+            offset: pagination.offset,
+            limit: pagination.limit
+          });
+        })
+      );
+
+      return {
+        paginator,
+        pageData$,
+        type
+      };
+    });
+  }
 
   loadTransfers() {}
 }
