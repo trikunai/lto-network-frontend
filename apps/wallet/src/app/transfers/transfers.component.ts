@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { TransactionsRepository, LtoAccount, Transaction } from '@lto/core';
+import { TransactionsRepository, LtoAccount, Paginator } from '@lto/core';
 import { AuthService } from '../core';
 import { switchMap, filter, map } from 'rxjs/operators';
-import { Observable, BehaviorSubject, of } from 'rxjs';
+import { combineLatest } from 'rxjs';
 
 @Component({
   selector: 'wallet-transfers',
@@ -15,20 +15,23 @@ export class TransfersComponent implements OnInit {
     map(account => account.address)
   );
 
-  transfers$ = this.address$.pipe(
-    switchMap(address => {
+  transfersPaginator = new Paginator();
+  massTransfersPaginator = new Paginator();
+
+  transfers$ = combineLatest(this.address$, this.transfersPaginator.info$).pipe(
+    switchMap(([address, pagination]) => {
       return this._transactionsRepo.list({
         address,
-        index: 'all_transfers',
-        offset: 0,
-        limit: 100
+        index: 'transfer',
+        offset: pagination.offset,
+        limit: pagination.limit
       });
     })
   );
 
-  columns$ = of(['direction', 'id', 'type', 'sender', 'recipient', 'timestamp', 'amount', 'fee']);
-
   constructor(private _auth: AuthService, private _transactionsRepo: TransactionsRepository) {}
 
   ngOnInit() {}
+
+  loadTransfers() {}
 }

@@ -16,7 +16,8 @@ import {
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarConfig,
   MatSidenavModule,
-  MatTableModule
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material';
 import {
   ContentSectionModule,
@@ -48,7 +49,8 @@ import {
     ResponsiveTextModule,
     MatTableModule,
     LtoPipeModule,
-    TransactionLabelPipeModule
+    TransactionLabelPipeModule,
+    MatPaginatorModule
   ],
   providers: [
     {
