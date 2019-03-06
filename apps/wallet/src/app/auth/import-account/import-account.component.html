@@ -8,13 +8,22 @@
   <p>After import your account will be saved locally</p>
   <mat-form-field>
     <mat-label>Account name</mat-label>
-    <input matInput type="text" formControlName="accountName">
+    <input matInput type="text" formControlName="accountName" />
   </mat-form-field>
-  <wallet-password-form-field formControlName="password" [confirmation]="true"></wallet-password-form-field>
+  <wallet-password-form-field
+    formControlName="password"
+    [confirmation]="true"
+  ></wallet-password-form-field>
   <div fxLayout="row" class="actions" fxLayout.xs="column-reverse" fxLayoutGap="8px">
-    <a routerLink="../login" mat-button color="primary">Login</a>
-    <a routerLink="../import" mat-button color="primary">Create account</a>
-    <span fxFlex="1 1 auto"></span>
-    <button mat-flat-button color="primary">Import</button>
+    <a
+      [disabled]="loginDisabled$ | async"
+      routerLink="../login"
+      class="login-link"
+      mat-button
+      color="primary"
+      >Login</a
+    >
+    <a routerLink="../create" mat-button color="primary">Create account</a>
+    <span fxFlex="1 1 auto"></span> <button mat-flat-button color="primary">Import</button>
   </div>
 </form>

@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { LocalAccountsService, AuthService } from '../../core';
 import { MatSnackBar } from '@angular/material';
 import { LtoService } from '@lto/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'wallet-import-account',
@@ -12,6 +14,7 @@ import { LtoService } from '@lto/core';
 })
 export class ImportAccountComponent implements OnInit {
   importForm!: FormGroup;
+  loginDisabled$!: Observable<boolean>;
 
   constructor(
     private _localAccountsService: LocalAccountsService,
@@ -27,6 +30,10 @@ export class ImportAccountComponent implements OnInit {
       accountName: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required])
     });
+
+    this.loginDisabled$ = this._localAccountsService.availableAccounts$.pipe(
+      map(accounts => accounts.length === 0)
+    );
   }
 
   importAccountAndRedirect() {

@@ -1,10 +1,10 @@
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { AuthService } from '../services';
 import { AuthGuard } from './auth.guard';
 import { of } from 'rxjs';
 
-describe('AuthGuard', () => {
+describe('core/AuthGuard', () => {
   let authMock: Partial<AuthService>;
   let routerMock: Partial<Router>;
   let guard: AuthGuard;

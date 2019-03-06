@@ -3,17 +3,26 @@
 <form [formGroup]="newAccountForm" fxLayout="column" (submit)="saveAccountAndLogin()">
   <mat-form-field>
     <mat-label>Wallet address</mat-label>
-    <input matInput type="text" formControlName="address">
+    <input matInput type="text" formControlName="address" />
   </mat-form-field>
   <mat-form-field>
     <mat-label>Account name</mat-label>
-    <input matInput type="text" formControlName="accountName">
+    <input matInput type="text" formControlName="accountName" />
   </mat-form-field>
-  <wallet-password-form-field formControlName="password" [confirmation]="true"></wallet-password-form-field>
+  <wallet-password-form-field
+    formControlName="password"
+    [confirmation]="true"
+  ></wallet-password-form-field>
   <div fxLayout="row" class="actions" fxLayout.xs="column-reverse" fxLayoutGap="8px">
-    <a routerLink="../login" mat-button color="primary">Login</a>
+    <a
+      [disabled]="loginDisabled$ | async"
+      class="login-link"
+      routerLink="../login"
+      mat-button
+      color="primary"
+      >Login</a
+    >
     <a routerLink="../import" mat-button color="primary">Import account</a>
-    <span fxFlex="1 1 auto"></span>
-    <button mat-flat-button color="primary">Create</button>
+    <span fxFlex="1 1 auto"></span> <button mat-flat-button color="primary">Create</button>
   </div>
 </form>
