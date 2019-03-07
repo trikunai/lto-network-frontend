@@ -1,5 +1,6 @@
 import { Injectable, Inject, ClassProvider } from '@angular/core';
-import { LTO, Account } from 'lto-api';
+import { LTO } from 'lto-api';
+import { LtoAccount } from '../models';
 import { LTO_NETWORK_BYTE } from '../tokens';
 
 @Injectable()
@@ -15,11 +16,11 @@ export class LtoServiceImpl implements LtoService {
     return this._lto.decryptSeedPhrase(encryptedSeedPhrase, password);
   }
 
-  createAccountFromExistingPhrase(seedPhrase: string): Account {
+  createAccountFromExistingPhrase(seedPhrase: string): LtoAccount {
     return this._lto.createAccountFromExistingPhrase(seedPhrase);
   }
 
-  generateLtoAccount(): Account {
+  generateLtoAccount(): LtoAccount {
     return this._lto.createAccount();
   }
 }
@@ -31,6 +32,6 @@ export abstract class LtoService {
   };
 
   abstract decryptSeedPhrase(encryptedSeedPhrase: string, password: string): string;
-  abstract createAccountFromExistingPhrase(seedPhrase: string): Account;
-  abstract generateLtoAccount(): Account;
+  abstract createAccountFromExistingPhrase(seedPhrase: string): LtoAccount;
+  abstract generateLtoAccount(): LtoAccount;
 }

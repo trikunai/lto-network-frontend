@@ -14,7 +14,12 @@
       <lto-http-error *ngSuspenseError="let error" [error]="error"></lto-http-error>
       <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
       <ng-container *ngSuspenseSuccess="let balance">
-        <div fxLayout="column" fxLayout.gt-xs="row" fxLayoutGap="16px" fxLayoutAlign="space-between">
+        <div
+          fxLayout="column"
+          fxLayout.gt-xs="row"
+          fxLayoutGap="16px"
+          fxLayoutAlign="space-between"
+        >
           <div class="item">
             <div class="label">Regular</div>
             <div class="value">{{ balance.regular | lto | number }}</div>
@@ -36,17 +41,26 @@
     </mat-card-content>
   </mat-card>
   <h3 class="mat-h3">Transactions</h3>
-  <ng-container *ngFor="let dataSource of transactions$ | async">
+  <ng-container *ngFor="let dataSource of (transactions$ | async)">
     <mat-card *ngIf="(dataSource.pageData$ | async)?.total !== 0">
-      <mat-card-title>{{dataSource.type | transactionLabel}}</mat-card-title>
+      <mat-card-title>{{ dataSource.type | transactionLabel }}</mat-card-title>
       <explorer-card-content-table>
-        <lto-transactions-table [transactionLinkTemplate]="transactionLinkTpl" [addressLinkTemplate]="addressLinkTpl"
-          [walletAddress]="address$ | async" [directionColumn]="true" [transactionsType]="dataSource.type"
-          [transactions]="(dataSource.pageData$ | async)?.transactions"></lto-transactions-table>
+        <lto-transactions-table
+          [transactionLinkTemplate]="transactionLinkTpl"
+          [addressLinkTemplate]="addressLinkTpl"
+          [walletAddress]="address$ | async"
+          [directionColumn]="true"
+          [transactionsType]="dataSource.type"
+          [transactions]="(dataSource.pageData$ | async)?.transactions"
+        ></lto-transactions-table>
       </explorer-card-content-table>
       <mat-card-actions>
-        <mat-paginator (page)="dataSource.update($event)" [pageSizeOptions]="[25, 50, 100]" [pageSize]="dataSource.limit$ | async"
-          [length]="(dataSource.pageData$ | async)?.total"></mat-paginator>
+        <mat-paginator
+          (page)="dataSource.update($event)"
+          [pageSizeOptions]="[25, 50, 100]"
+          [pageSize]="dataSource.limit$ | async"
+          [length]="(dataSource.pageData$ | async)?.total"
+        ></mat-paginator>
       </mat-card-actions>
     </mat-card>
   </ng-container>

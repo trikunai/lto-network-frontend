@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { NgSuspenseModule } from 'ng-suspense';
 import {
   MatToolbarModule,
   MatCardModule,
@@ -14,9 +15,17 @@ import {
   MatSnackBarModule,
   MAT_SNACK_BAR_DEFAULT_OPTIONS,
   MatSnackBarConfig,
-  MatSidenavModule
+  MatSidenavModule,
+  MatTableModule,
+  MatPaginatorModule
 } from '@angular/material';
-import { ContentSectionModule } from '@lto/common';
+import {
+  ContentSectionModule,
+  TransactionsTableModule,
+  ResponsiveTextModule,
+  LtoPipeModule,
+  TransactionLabelPipeModule
+} from '@lto/common';
 
 @NgModule({
   declarations: [],
@@ -34,7 +43,14 @@ import { ContentSectionModule } from '@lto/common';
     MatSnackBarModule,
     ReactiveFormsModule,
     ContentSectionModule,
-    MatSidenavModule
+    MatSidenavModule,
+    TransactionsTableModule,
+    NgSuspenseModule,
+    ResponsiveTextModule,
+    MatTableModule,
+    LtoPipeModule,
+    TransactionLabelPipeModule,
+    MatPaginatorModule
   ],
   providers: [
     {
