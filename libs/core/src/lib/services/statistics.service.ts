@@ -19,7 +19,6 @@ export class StatisticsServiceImpl {
 
   transactions(config: TransactionsStatsConfig) {
     const requestConfig = {
-      type: TransactionType.ANCHOR,
       granularity: 'day',
       ...config
     };
