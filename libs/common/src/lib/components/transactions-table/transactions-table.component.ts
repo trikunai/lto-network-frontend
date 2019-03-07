@@ -38,23 +38,23 @@ export class TransactionsTableComponent implements OnInit {
         switch (transactionType) {
           case TransactionType.TRANSFER:
           case TransactionType.LEASE:
-            columns = ['id', 'fee', 'timestamp', 'sender', 'recipient', 'amount'];
+            columns = ['id', 'timestamp', 'sender', 'recipient', 'amount', 'fee'];
             if (this.directionColumn) {
               columns = ['direction', ...columns];
             }
             break;
           case TransactionType.MASS_TRANSFER:
-            columns = ['id', 'fee', 'timestamp', 'sender', 'amount'];
+            columns = ['id', 'timestamp', 'sender', 'amount', 'fee'];
             if (this.directionColumn) {
               columns = ['direction', ...columns];
             }
             break;
           case TransactionType.CANCEL_LEASE:
-            columns = ['id', 'fee', 'timestamp', 'sender', 'leasing'];
+            columns = ['id', 'timestamp', 'sender', 'leasing', 'fee'];
             break;
           case TransactionType.DATA:
           case TransactionType.ANCHOR:
-            columns = ['id', 'fee', 'timestamp', 'sender'];
+            columns = ['id', 'timestamp', 'sender', 'fee'];
             break;
           default:
             columns = ['id', 'sender', 'amount'];

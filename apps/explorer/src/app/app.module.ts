@@ -63,7 +63,7 @@ import { SharedModule } from './shared';
   providers: [
     {
       provide: LTO_STATS_HOST,
-      useValue: 'https://stats.lto.network'
+      useValue: environment.statsHost
     }
   ],
   bootstrap: [AppComponent]

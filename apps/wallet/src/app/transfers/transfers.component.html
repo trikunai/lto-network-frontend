@@ -1,0 +1,46 @@
+<lto-content-section>
+  <mat-card [ngSuspense]="provider.pageData$" *ngFor="let provider of dataProviders">
+    <mat-card-title fxLayout="row" fxLayoutAlign="start center">
+      <span fxFlex="1 1 auto">{{ provider.type | transactionLabel }}</span>
+      <button mat-flat-button color="primary" *ngIf="provider.type === TransactionType.TRANSFER">
+        New transfer
+      </button>
+    </mat-card-title>
+    <ng-container *ngSuspenseSuccess="let transfersPage">
+      <mat-card-content>
+        <ng-container>
+          <div class="table-container">
+            <lto-transactions-table
+              [transactionLinkTemplate]="transactionLinkTpl"
+              [addressLinkTemplate]="addressLinkTpl"
+              [walletAddress]="address$ | async"
+              [directionColumn]="true"
+              [transactionsType]="4"
+              [transactions]="transfersPage.transactions"
+            ></lto-transactions-table>
+          </div>
+        </ng-container>
+      </mat-card-content>
+      <mat-card-actions>
+        <mat-paginator
+          [length]="transfersPage.total"
+          [pageSize]="provider.paginator.pageSize$ | async"
+          [pageSizeOptions]="[5, 10, 25]"
+          (page)="provider.paginator.update($event)"
+        ></mat-paginator>
+      </mat-card-actions>
+    </ng-container>
+  </mat-card>
+</lto-content-section>
+
+<ng-template #addressLinkTpl let-address>
+  <a *ngIf="address" [routerLink]="['/', 'addresses', address]">
+    <lto-responsive-text xs="5" xl="15" [text]="address"></lto-responsive-text>
+  </a>
+</ng-template>
+
+<ng-template #transactionLinkTpl let-transactionId>
+  <a [routerLink]="['/', 'transactions', transactionId]">
+    <lto-responsive-text xs="30" xl="15" [text]="transactionId"></lto-responsive-text>
+  </a>
+</ng-template>
