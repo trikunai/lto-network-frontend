@@ -1,13 +1,35 @@
 <mat-card>
-  <mat-card-title>Transactions per day</mat-card-title>
+  <mat-card-title>Transactions statistics</mat-card-title>
   <mat-card-content>
     <div class="chart-container" [ngSuspense]="chartData$">
-      <div class="error" *ngSuspenseError fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+      <div
+        class="error"
+        *ngSuspenseError
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxFlexFill
+      >
         <span>Unable to load statistics</span>
       </div>
       <lto-loading-spinner *ngSuspensePlaceholder="500"></lto-loading-spinner>
-      <ngx-charts-line-chart *ngSuspenseSuccess="let stats" [xAxis]="true" [yAxis]="true" [showGridLines]="true"
-        [customColors]="colors" [results]="stats"></ngx-charts-line-chart>
+      <ngx-charts-line-chart
+        *ngSuspenseSuccess="let stats"
+        [xAxis]="true"
+        [yAxis]="true"
+        [showGridLines]="true"
+        [customColors]="colors"
+        [results]="stats"
+      ></ngx-charts-line-chart>
     </div>
   </mat-card-content>
+  <mat-divider></mat-divider>
+  <mat-card-actions>
+    <button mat-button color="primary" [matMenuTriggerFor]="granularityMenu">
+      {{ granularity$ | async }} <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <mat-menu #granularityMenu>
+      <button mat-menu-item (click)="setGranularity(Granularity.Last7Days)">Last 7 days</button>
+      <button mat-menu-item (click)="setGranularity(Granularity.Today)">Today</button>
+    </mat-menu>
+  </mat-card-actions>
 </mat-card>

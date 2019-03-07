@@ -21,7 +21,8 @@ import {
   MatProgressSpinnerModule,
   MatMenuModule,
   MatSnackBarModule,
-  MatPaginatorModule
+  MatPaginatorModule,
+  MatDividerModule
 } from '@angular/material';
 import { LineChartModule } from '@swimlane/ngx-charts';
 import { NgSuspenseModule } from 'ng-suspense';
@@ -69,7 +70,8 @@ import { SearchComponent } from './components/search/search.component';
     ResponsiveTextModule,
     TransactionsTableModule,
     MatPaginatorModule,
-    ContentSectionModule
+    ContentSectionModule,
+    MatDividerModule
   ]
 })
 export class SharedModule {}

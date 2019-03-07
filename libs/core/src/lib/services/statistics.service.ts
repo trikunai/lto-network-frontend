@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 
 export const LTO_STATS_HOST = new InjectionToken<string>('LTO_STATS_HOST');
 
-interface TransactionsStatsConfig {
+export interface TransactionsStatsConfig {
   startdate: string;
   enddate: string;
   granularity?: 'sec' | 'hour' | 'day';
